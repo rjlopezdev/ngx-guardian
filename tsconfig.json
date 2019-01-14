@@ -17,6 +17,14 @@
     "lib": [
       "es2018",
       "dom"
-    ]
+    ],
+    "paths": {
+      "ngx-guardian": [
+        "dist/ngx-guardian"
+      ],
+      "ngx-guardian/*": [
+        "dist/ngx-guardian/*"
+      ]
+    }
   }
 }

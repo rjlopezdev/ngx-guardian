@@ -2,5 +2,42 @@
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "version": 1,
   "newProjectRoot": "projects",
-  "projects": {}
+  "projects": {
+    "ngx-guardian": {
+      "root": "projects/ngx-guardian",
+      "sourceRoot": "projects/ngx-guardian/src",
+      "projectType": "library",
+      "prefix": "ngx",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/ngx-guardian/tsconfig.lib.json",
+            "project": "projects/ngx-guardian/ng-package.json"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/ngx-guardian/src/test.ts",
+            "tsConfig": "projects/ngx-guardian/tsconfig.spec.json",
+            "karmaConfig": "projects/ngx-guardian/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/ngx-guardian/tsconfig.lib.json",
+              "projects/ngx-guardian/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "defaultProject": "ngx-guardian"
 }
