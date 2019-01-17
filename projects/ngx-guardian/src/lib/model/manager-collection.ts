@@ -32,6 +32,6 @@ export class ManagerCollection {
      */
     public getManagerByRoleName(role: string): PermissionManager {
         const manager = this.managers.filter((mng) => mng.getRoleName() === role);
-        return (manager) ? manager[0] : null;
+        return (manager.length) ? manager[0] : null;
     }
 }
