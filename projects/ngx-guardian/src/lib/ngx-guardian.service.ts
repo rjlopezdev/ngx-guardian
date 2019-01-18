@@ -123,7 +123,7 @@ export class NgxGuardianService {
     }
 
     // Set @currentManager from _setByCookie_
-    if (config.setByCookie) {
+    if (config.setFromStorage) {
       // Set role from localStorage 'ngx-guardian-role' variable
       const role = localStorage.getItem('ngx-guardian-role');
       this.currentManager = this.managerCollection.getManagerByRoleName(role);

@@ -5,7 +5,7 @@ import { NgxGuardianManager } from './ngx-guardian-interfaces';
 export class NgxGuardianConfig {
     managers: NgxGuardianManager[];
     defaultRole?: string;
-    setByCookie?: boolean;
+    setFromStorage?: boolean;
     unauthorizedRoute?: string;
     noGrantedRoute?: string;
 }
