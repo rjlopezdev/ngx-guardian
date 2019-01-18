@@ -24,12 +24,14 @@ export class PermissionManager {
      */
     constructor(role: Role, permissions: NgxGuardianPermission[]) {
         this.role = role;
-        for (const permission of permissions) {
-            const permissionsToAdd: Permission[] = [];
-            for (const action of permission.actions) {
-                permissionsToAdd.push(new Permission(action));
+        if (permissions) {
+            for (const permission of permissions) {
+                const permissionsToAdd: Permission[] = [];
+                for (const action of permission.actions) {
+                    permissionsToAdd.push(new Permission(action));
+                }
+                this.permissions.set(permission.resource, permissionsToAdd);
             }
-            this.permissions.set(permission.resource, permissionsToAdd);
         }
     }
 
