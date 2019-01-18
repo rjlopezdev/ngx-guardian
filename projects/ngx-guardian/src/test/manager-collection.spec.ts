@@ -5,7 +5,7 @@ let managerData: NgxGuardianManager[];
 let collectionManager: any;
 
 describe('ManagerCollecion class', () => {
-  
+
     beforeEach(() => {
         managerData = [
             {
@@ -56,7 +56,7 @@ describe('ManagerCollecion class', () => {
           ];
           collectionManager = new ManagerCollection(managerData);
     });
-  
+
     it('should create a new ManagerCollection as specification', () => {
       const collection: any = new ManagerCollection(managerData);
 
