@@ -70,13 +70,13 @@ localStorage.setItem('ngx-guardian-role', 'ROLE_NAME');
 
 ```bash
 ├── src
-│   ├── ngx-guardian
-│   │   ├── ngx-roles.ts
-│   │   ├── ngx-permissions.ts
-│   │   ├── ngx-resources.ts
-│   │   └── ngx-foo-manager.ts
-│   │   └── ...
-│   │   └── ngx-other-foo-manager.ts
+    └── ngx-guardian
+        ├── ngx-roles.ts
+        ├── ngx-permissions.ts
+        ├── ngx-resources.ts
+        ├── ngx-foo-manager.ts
+        ├── ...
+        └── ngx-other-foo-manager.ts
 ```
 
 # Permission specification

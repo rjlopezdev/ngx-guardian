@@ -95,7 +95,7 @@ export class NgxGuardianService {
    * 1. Set available Permission Manager's
    * 2. Set current manager following the strategy below:
    *  - If defaultRole is provided
-   * @param config 
+   * @param config a congiguration of permission manager
    */
   private loadConfig(config: NgxGuardianConfig) {
 
