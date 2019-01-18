@@ -1,27 +1,139 @@
-# NgxGuardian
+<p align="center">
+  <img src="ngx-guardian-logo.png">
+</p>
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.1.4.
+<h1 align="center"> Ngx Guardian </h1>
 
-## Development server
+<p align="center">
+  Empowering your Angular project using a powerful Permission Manager.
+  <br>
+  <a href="https://getbootstrap.com/docs/4.2/"><strong>Explore Wiki »</strong></a>
+</p>
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+# Installation
 
-## Code scaffolding
+`npm install ngx-guardian --save`
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+# Set up
 
-## Build
+In your App Module:
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+```typescript
+@NgModule({
+    declarations: [. . .],
+    providers: [. . .],
+    imports: [
+        NgxGuardianModule.forRoot({
+            // Set up your managers here (see Permission specification)
+            managers: [
+                fooPermissionManager,
+                otherFooPermissionManager,
+                ...
+            ],
+            // Manager role to set its manager as default
+            defaultRole: Role.ROLE_NAME,
+            // Set a manager by cookie value (see below)
+            setFromStorage: true,
+            // Navigate to this route if no role set
+            unauthorizedRoute: '/no-auth',
+            // Navigate to this route if user is no granted for route
+            noGrantedRoute: '/no-granted'
+        })
+    ],
+    exports: [. . .]
+})
+export class AppModule { }
+```
 
-## Running unit tests
+You can delegate default manager setup to NgxGuardian setting a role in localStorage:
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+```typescript
+localStorage.setItem('ngx-guardian-role', 'ROLE_NAME');
+```
 
-## Running end-to-end tests
+## forRoot() Config
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+| Name | Type | Default | Required | Description |
+| --- | --- | :---: | :---: | --- |
+| managers | NgxGuardianManager[] | - | :heavy_check_mark: | Permission Managers for application (with roles & permissions over resources)
+| defaultRole | string | - | - | Default role to set its manager (if no provided, manager is disabled)
+| setFromStorage | boolean | false | - | Set role by cookie value
+| unauthorizedRoute | string | //TO SPECIFY | - | Route to navigate if no manager set
+| noGrantedRoute | string | //TO SPECIFY | - | Route to navigate if user has no permissions
 
-## Further help
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+# Permission specification
+
+1. Define your roles
+```typescript
+// ngx-roles.ts
+
+export enum NgxGuardianRole {
+    ADMIN = 'ADMIN',
+    DEFAULT = 'DEFAULT',
+    ONLY_VIEW = 'ONLY_VIEW'
+}
+```
+
+2. Define your permissions
+```typescript
+// ngx-permisssions.ts
+
+export enum NgxGuardianPermissionType {
+    CREATE = 'CREATE',
+    READ = 'READ'
+}
+```
+
+3. Define your resources
+```typescript
+// ngx-resources.ts
+
+import { NgxGuardianResource } from 'ngx-guardian';
+
+export enum NgxGuardianResourceType {
+    PIZZA = 'PIZZA',
+    PASTA = 'PASTA',
+}
+
+export const resources: NgxGuardianResource[] = [
+    {
+        name: NgxGuardianResourceType.PASTA,
+        routes: []
+    },
+        {
+        name: NgxGuardianResourceType.PIZZA,
+        routes: []
+    }
+]
+```
+
+4. Define your permission managers
+```typescript
+//ngx-foo-manager.ts
+
+import { NgxGuardianManager } from 'ngx-guardian';
+import { NgxGuardianRole } from './ngx-role';
+import { NgxGuardianResourceType } from './ngx-resources';
+import { NgxGuardianPermissionType } from './ngx-permissions';
+
+export const defaultManager: NgxGuardianManager = {
+    role: NgxGuardianRole.ADMIN,
+    permissions: [
+        {
+            resource: NgxGuardianResourceType.PASTA,
+            actions: [
+                NgxGuardianPermissionType.CREATE,
+                NgxGuardianPermissionType.READ
+            ]
+        },
+        {
+            resource: NgxGuardianResourceType.PIZZA,
+            actions: [
+                NgxGuardianPermissionType.CREATE,
+                NgxGuardianPermissionType.READ
+            ]
+        }
+    ]
+}
+```
