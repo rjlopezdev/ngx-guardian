@@ -1,6 +1,6 @@
 import { PermissionManager } from './permission-manager';
 import { Role } from './role';
-import { NgxGuardianManager } from 'ngx-guardian/public_api';
+import { NgxGuardianManager } from 'ngx-guardian';
 
 /**
  * Collection of available managers
