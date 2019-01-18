@@ -7,14 +7,19 @@
 <p align="center">
   Empowering your Angular project using a powerful Permission Manager.
   <br>
-  <a href="https://getbootstrap.com/docs/4.2/"><strong>Explore Wiki »</strong></a>
+  <a href="https://getbootstrap.com/docs/4.2/">
+    <strong> Explore Wiki » </strong>
+  </a>
+  <br>
+  <img src="https://circleci.com/gh/rjlopezdev/ngx-guardian/tree/master.svg?style=svg&circle-token=d5b1a0cd93487254c574765be086e61cc0574b48">
 </p>
+
 
 # Installation
 
 `npm install ngx-guardian --save`
 
-# Set up
+# Setup
 
 In your App Module:
 
@@ -61,6 +66,18 @@ localStorage.setItem('ngx-guardian-role', 'ROLE_NAME');
 | unauthorizedRoute | string | //TO SPECIFY | - | Route to navigate if no manager set
 | noGrantedRoute | string | //TO SPECIFY | - | Route to navigate if user has no permissions
 
+# Proposed files structure
+
+```bash
+├── src
+│   ├── ngx-guardian
+│   │   ├── ngx-roles.ts
+│   │   ├── ngx-permissions.ts
+│   │   ├── ngx-resources.ts
+│   │   └── ngx-foo-manager.ts
+│   │   └── ...
+│   │   └── ngx-other-foo-manager.ts
+```
 
 # Permission specification
 
