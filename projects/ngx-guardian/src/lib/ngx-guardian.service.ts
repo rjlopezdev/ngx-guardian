@@ -46,6 +46,16 @@ export class NgxGuardianService {
   }
 
   /**
+   * Returns if user has the permission for the resource provided
+   * If granted returns true else false
+   * @param resource resource to check
+   * @param permission permission to check
+   */
+  public isGranted(resource: string, permission: string) {
+    return this.currentManager.isGranted(resource, permission);
+  }
+
+  /**
    * Set manager for role provided
    * If role doesn't match, return null
    * @param role role name
