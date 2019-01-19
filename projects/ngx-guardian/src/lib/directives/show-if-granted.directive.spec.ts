@@ -5,7 +5,7 @@ import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { NgxGuardianService } from '../ngx-guardian.service';
 
 xdescribe('ShowIfGrantedDirective', () => {
-  
+
   let fixture;
   beforeEach(() => {
     fixture = TestBed.configureTestingModule({
