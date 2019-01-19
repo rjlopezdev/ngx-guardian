@@ -5,6 +5,7 @@ import { Resource } from './model/resource';
 import { ManagerCollection } from './model/manager-collection';
 import { Role } from './model/role';
 import { NGX_GUARDIAN_CONFIG, NgxGuardianConfig } from './config';
+import { NgxGuardianPermission, NgxGuardianResource } from './ngx-guardian-interfaces';
 
 /**
  * Service for permissions management
@@ -76,9 +77,15 @@ export class NgxGuardianService {
    * Add permission to the resource provided
    * Return true if permission added successfully, else false
    * @param permission permission to add
+   * @param resourceName the of the resource to add permission
    * @returns if permission added
    */
-  public addPermission(permission: Permission, resourceName: string): boolean {
+  public addPermission(permission: NgxGuardianPermission, resourceName: string): boolean {
+    throw new Error('no implemented');
+  }
+
+
+  public addPermissionType(permission: string) {
     throw new Error('no implemented');
   }
 
@@ -88,7 +95,7 @@ export class NgxGuardianService {
    * @param resource resource to add
    * @returns if resource added
    */
-  public addResource(resource: Resource): boolean {
+  public addResource(resource: NgxGuardianResource): boolean {
     throw new Error('no implemented');
   }
 
@@ -132,7 +139,7 @@ export class NgxGuardianService {
       return;
     }
 
-    // Set @currentManager from _setByCookie_
+    // Set @currentManager from _setFromStorage_
     if (config.setFromStorage) {
       // Set role from localStorage 'ngx-guardian-role' variable
       const role = localStorage.getItem('ngx-guardian-role');
