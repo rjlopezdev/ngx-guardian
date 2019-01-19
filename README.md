@@ -98,7 +98,11 @@ export enum NgxGuardianRole {
 
 export enum NgxGuardianPermissionType {
     CREATE = 'CREATE',
-    READ = 'READ'
+    READ = 'READ',
+    UPDATE = 'UPDATE',
+    DELETE = 'DELETE',
+    APPROVE = 'APPROVE',
+    REJECT = 'REJECT'
 }
 ```
 
