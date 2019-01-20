@@ -60,7 +60,7 @@ localStorage.setItem('ngx-guardian-role', 'ROLE_NAME');
 
 | Name | Type | Default | Required | Description |
 | --- | --- | :---: | :---: | --- |
-| managers | NgxGuardianManager[] | - | :heavy_check_mark: | Permission Managers for application (with roles & permissions over resources)
+| managers | NgxGuardianManager[] | - | :heavy_check_mark: | Permission Managers for application (with roles & actions over resources)
 | defaultRole | string | - | - | Default role to set its manager (if no provided, manager is disabled)
 | setFromStorage | boolean | false | - | Set role by cookie value
 | unauthorizedRoute | string | //TO SPECIFY | - | Route to navigate if no manager set
@@ -92,11 +92,11 @@ export enum NgxGuardianRole {
 }
 ```
 
-2. Define your permissions
+2. Define your actions
 ```typescript
 // ngx-permisssions.ts
 
-export enum NgxGuardianPermissionType {
+export enum NgxGuardianAction {
     CREATE = 'CREATE',
     READ = 'READ',
     UPDATE = 'UPDATE',
@@ -136,7 +136,7 @@ export const resources: NgxGuardianResource[] = [
 import { NgxGuardianManager } from 'ngx-guardian';
 import { NgxGuardianRole } from './ngx-role';
 import { NgxGuardianResourceType } from './ngx-resources';
-import { NgxGuardianPermissionType } from './ngx-permissions';
+import { NgxGuardianAction } from './ngx-permissions';
 
 export const defaultManager: NgxGuardianManager = {
     role: NgxGuardianRole.ADMIN,
@@ -144,15 +144,15 @@ export const defaultManager: NgxGuardianManager = {
         {
             resource: NgxGuardianResourceType.PASTA,
             actions: [
-                NgxGuardianPermissionType.CREATE,
-                NgxGuardianPermissionType.READ
+                NgxGuardianAction.CREATE,
+                NgxGuardianAction.READ
             ]
         },
         {
             resource: NgxGuardianResourceType.PIZZA,
             actions: [
-                NgxGuardianPermissionType.CREATE,
-                NgxGuardianPermissionType.READ
+                NgxGuardianAction.CREATE,
+                NgxGuardianAction.READ
             ]
         }
     ]

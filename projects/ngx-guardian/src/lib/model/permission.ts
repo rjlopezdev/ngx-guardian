@@ -1,7 +1,7 @@
 /**
  * Represents a permission
  */
-export class Permission {
+export class Action {
 
     /**
      * Name of permission

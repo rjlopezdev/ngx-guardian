@@ -1,5 +1,5 @@
 import { Resource } from './resource';
-import { Permission } from './permission';
+import { Action } from './permission';
 import { Role } from './role';
 import { NgxGuardianPermission } from '../ngx-guardian-interfaces';
 
@@ -15,7 +15,7 @@ export class PermissionManager {
     /**
      * A list of available permissions for a @property role
      */
-    private permissions: Map<string, Permission[]> = new Map<string, Permission[]>();
+    private permissions: Map<string, Action[]> = new Map<string, Action[]>();
 
     /**
      * Creates a new permission manager with permissions for a role provided
@@ -26,11 +26,11 @@ export class PermissionManager {
         this.role = role;
         if (permissions) {
             for (const permission of permissions) {
-                const permissionsToAdd: Permission[] = [];
+                const actionsToAdd: Action[] = [];
                 for (const action of permission.actions) {
-                    permissionsToAdd.push(new Permission(action));
+                    actionsToAdd.push(new Action(action));
                 }
-                this.permissions.set(permission.resource, permissionsToAdd);
+                this.permissions.set(permission.resource, actionsToAdd);
             }
         }
     }
@@ -38,7 +38,7 @@ export class PermissionManager {
     /**
      * Return permission Map (resourceName, Permission)
      */
-    public getPermissions(): Map<string, Permission[]> {
+    public getPermissions(): Map<string, Action[]> {
         return this.permissions;
     }
 
@@ -58,7 +58,7 @@ export class PermissionManager {
     public isGranted(resourceName: string, permissionName: string): boolean {
         let isGranted = false;
         if (this.permissions.get(resourceName)) {
-            for (const permission of this.permissions.get(resourceName) as Permission[]) {
+            for (const permission of this.permissions.get(resourceName) as Action[]) {
                 if (permission.getName() === permissionName) {
                     isGranted = true;
                     break;

@@ -27,10 +27,10 @@ export class ShowIfGrantedDirective {
    * If user has the provided permission for the provider resource, show html block
    * If not, the block is destroyed
    * @param resourceName the name of resource
-   * @param permissionType the name of permission
+   * @param action the name of permission
    */
-  private isGranted(resourceName: string, permissionType: string) {
-    if (this.permissionManagerService.isGranted(resourceName, permissionType)) {
+  private isGranted(resourceName: string, action: string) {
+    if (this.permissionManagerService.isGranted(resourceName, action)) {
       this.viewContainer.createEmbeddedView(this.templateRef);
     } else {
       this.viewContainer.clear();

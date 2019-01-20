@@ -1,6 +1,6 @@
 import { Injectable, Optional } from '@angular/core';
 import { PermissionManager } from './model/permission-manager';
-import { Permission } from './model/permission';
+import { Action } from './model/permission';
 import { Resource } from './model/resource';
 import { ManagerCollection } from './model/manager-collection';
 import { Role } from './model/role';
@@ -52,8 +52,8 @@ export class NgxGuardianService {
    * @param resource resource to check
    * @param permission permission to check
    */
-  public isGranted(resource: string, permission: string) {
-    return this.currentManager.isGranted(resource, permission);
+  public isGranted(resource: string, action: string) {
+    return this.currentManager.isGranted(resource, action);
   }
 
   /**
@@ -85,7 +85,7 @@ export class NgxGuardianService {
   }
 
 
-  public addPermissionType(permission: string) {
+  public addAction(action: string) {
     throw new Error('no implemented');
   }
 
