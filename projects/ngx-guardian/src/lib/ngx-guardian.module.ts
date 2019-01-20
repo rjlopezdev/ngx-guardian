@@ -15,7 +15,11 @@ import { NgxGuardianConfig } from './config';
   providers: [NgxGuardianService],
   imports: [
   ],
-  exports: [NgxGuardianComponent, ShowIfGrantedDirective]
+  exports: [
+    NgxGuardianComponent,
+    ShowIfGrantedDirective,
+    DisableIfNoGrantedDirective
+  ]
 })
 export class NgxGuardianModule {
   static forRoot(config: NgxGuardianConfig): ModuleWithProviders {
