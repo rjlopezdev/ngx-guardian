@@ -1,6 +1,7 @@
 {
   "name": "ngx-guardian",
   "version": "0.0.1",
+  "schematics": "./collection.json",
   "peerDependencies": {
     "@angular/common": "^7.1.0",
     "@angular/core": "^7.1.0"

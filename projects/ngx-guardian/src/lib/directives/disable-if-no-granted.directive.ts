@@ -64,11 +64,14 @@ export class DisableIfNoGrantedDirective {
       const type = this.element.nativeElement.getAttribute('type');
       if (type === 'button' || type === 'submit') {
         this.renderer.setAttribute(this.element.nativeElement, 'title', 'You are not authorized to edit this field');
+        this.renderer.setStyle(this.element, 'cursor', 'not-allowed');
       } else {
         this.renderer.setAttribute(this.element.nativeElement, 'title', 'You are not authorized to perform this action');
+        this.renderer.setStyle(this.element, 'cursor', 'not-allowed');
       }
     } else {
       this.renderer.setAttribute(this.element.nativeElement, 'title', 'You are not authorized to edit this field');
+      this.renderer.setStyle(this.element, 'cursor', 'not-allowed');
     }
   }
 

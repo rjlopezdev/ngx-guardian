@@ -1,0 +1,9 @@
+{
+    "$schema": "./node_modules/@angular-devkit/schematics/collection-schema.json",
+    "schematics": {
+      "ng-add": {
+        "description": "The default schematic to run when library is installed with ng add command",
+        "factory": "./schematics/ng-add"
+      }
+    }
+}

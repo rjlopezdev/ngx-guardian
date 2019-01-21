@@ -8,7 +8,8 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "doc": "npx compodoc -p projects/ngx-guardian/tsconfig.lib.json -s"
+    "doc": "npx compodoc -p projects/ngx-guardian/tsconfig.lib.json -s",
+    "package": "sh pack.sh"
   },
   "private": true,
   "dependencies": {
