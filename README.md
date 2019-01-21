@@ -12,6 +12,9 @@
   </a>
   <br>
   <img src="https://circleci.com/gh/rjlopezdev/ngx-guardian/tree/master.svg?style=svg&circle-token=d5b1a0cd93487254c574765be086e61cc0574b48">
+  <br>
+  <img src="https://img.shields.io/badge/mantainer-rjlopezdev-orange.svg?link=https://github.com/rjlopezdev">
+  <img src="https://img.shields.io/badge/ng%20add-compatible-ff69b4.svg">
 </p>
 
 
@@ -62,7 +65,7 @@ localStorage.setItem('ngx-guardian-role', 'ROLE_NAME');
 | --- | --- | :---: | :---: | --- |
 | managers | NgxGuardianManager[] | - | :heavy_check_mark: | Permission Managers for application (with roles & actions over resources)
 | defaultRole | string | - | - | Default role to set its manager (if no provided, manager is disabled)
-| setFromStorage | boolean | false | - | Set role by cookie value
+| setFromStorage | boolean | false | - | Set role by localStorage value
 | unauthorizedRoute | string | //TO SPECIFY | - | Route to navigate if no manager set
 | noGrantedRoute | string | //TO SPECIFY | - | Route to navigate if user has no permissions
 
