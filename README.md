@@ -7,20 +7,28 @@
 <p align="center">
   Empowering your Angular project using a powerful Permission Manager.
   <br>
-  <a href="https://getbootstrap.com/docs/4.2/">
+  <a href="">
     <strong> Explore Wiki » </strong>
   </a>
   <br>
   <img src="https://circleci.com/gh/rjlopezdev/ngx-guardian/tree/master.svg?style=svg&circle-token=d5b1a0cd93487254c574765be086e61cc0574b48">
   <br>
-  <img src="https://img.shields.io/badge/mantainer-rjlopezdev-orange.svg?link=https://github.com/rjlopezdev">
+  <img src="https://img.shields.io/badge/maintainer-rjlopezdev-orange.svg?link=https://github.com/rjlopezdev">
   <img src="https://img.shields.io/badge/ng%20add-compatible-ff69b4.svg">
 </p>
 
 
 # Installation
 
-`npm install ngx-guardian --save`
+## Using Angular CLI
+
+* `ng add ngx-guardian`
+
+## Using npm
+
+* `npm install ngx-guardian --save`
+
+* Follow the [Setup](#setup) & [Permission Specification](#permission-specification) sections
 
 # Setup
 
