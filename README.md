@@ -1,5 +1,6 @@
 <p align="center">
-  <img src="ngx-guardian-logo.png">
+  <img src="ngx-guardian-logo.svg" width="200" height="200">
+  <p align="center" style="color: #D8D8D8; font-size: 11px"> Logo designed by <a href="https://www.behance.net/yomissmar"> Yomissmar </a> </p>
 </p>
 
 <h1 align="center"> Ngx Guardian </h1>
@@ -11,18 +12,32 @@
     <strong> Explore Wiki » </strong>
   </a>
   <br>
+  <br>
   <img src="https://circleci.com/gh/rjlopezdev/ngx-guardian/tree/master.svg?style=svg&circle-token=d5b1a0cd93487254c574765be086e61cc0574b48">
+  <br>
   <br>
   <img src="https://img.shields.io/badge/maintainer-rjlopezdev-orange.svg?link=https://github.com/rjlopezdev">
   <img src="https://img.shields.io/badge/ng%20add-compatible-ff69b4.svg">
+  <img src="https://img.shields.io/badge/license-MIT-green.svg">
+  <br>
+  <br>
+  <a href="CONTRIBUTING.md"> Contributing </a>
+  .
+  <a href="LICENSE"> License </a>
 </p>
 
+# Summary
+
+* [Installation](#installation)
+* [Setup](#setup)
+* [Directive Usage](#directive-usage)
+* [Service Usage](#service-usage)
 
 # Installation
 
 ## Using Angular CLI
 
-* `ng add ngx-guardian`
+    ng add ngx-guardian
 
 ## Using npm
 
@@ -169,3 +184,8 @@ export const defaultManager: NgxGuardianManager = {
     ]
 }
 ```
+
+# Directive usage
+
+# Service usage
+
