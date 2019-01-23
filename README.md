@@ -1,6 +1,6 @@
 <p align="center">
   <img src="ngx-guardian-logo.svg" width="200" height="200">
-  <p align="center" style="color: #D8D8D8; font-size: 11px"> Logo designed by <a href="https://www.behance.net/yomissmar"> Yomissmar </a> </p>
+  <p align="center"> Logo designed by <a href="https://www.behance.net/yomissmar"> Yomissmar </a> </p>
 </p>
 
 <h1 align="center"> Ngx Guardian </h1>
@@ -30,7 +30,7 @@
 
 * [Installation](#installation)
 * [Setup](#setup)
-* [Directive Usage](#directive-usage)
+* [Directives Usage](#directives-usage)
 * [Service Usage](#service-usage)
 
 # Installation
@@ -63,7 +63,7 @@ In your App Module:
             ],
             // Manager role to set its manager as default
             defaultRole: Role.ROLE_NAME,
-            // Set a manager by cookie value (see below)
+            // Set a manager by localStorage value (see below)
             setFromStorage: true,
             // Navigate to this route if no role set
             unauthorizedRoute: '/no-auth',
@@ -185,7 +185,42 @@ export const defaultManager: NgxGuardianManager = {
 }
 ```
 
-# Directive usage
+# Directives usage
+
+___The purpose__ of ngx-guardian directives is to simplify the logic of the templates designed to __show, hide or modify the components or HTML code blocks__ according to permissions or user roles.
+
+## ShowIfGranted
+
+This directive __shows or hides__ a html block or component depending on whether a user has permission over a specific resource.
+
+```html
+<!-- This component will be shown ONLY IF user has CREATE permission over PIZZA resource -->
+<component-to-show-or-hide *ngxShowIfGranted="CREATE - PIZZA">
+</component-to-show-or-hide>
+
+<!-- This html block will be shown ONLY IF user has READ permission over PIZZA resource -->
+<div *ngxShowIfGranted="READ - PIZZA">
+    <p> Paragraph intended for users with READ permissions over pizza </p>
+</div>
+```
+
+## DisableIfNoGranted
+
+This directive __enable or disable__ a html block or component depending on whether a user has permission over a specific resource.
+
+
+```html
+<!-- This component will be set disabled IF user HAS NOT CREATE permission over PIZZA resource -->
+<component-to-show-or-hide *ngxDisableIfNoGranted="READ - PIZZA">
+</component-to-show-or-hide>
+
+<!-- This html block will be set disabled IF user HAS NOT READ permission over PIZZA resource -->
+<button *ngxShowIfGranted="UPDATE - PIZZA">
+    Update pizza toppings
+</button>
+```
+
 
 # Service usage
 
+__The purpose__ of the Permission Service is to __offer an interface for communication__ with the permission manager.
