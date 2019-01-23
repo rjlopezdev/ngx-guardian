@@ -1,12 +1,10 @@
 import { NgxGuardianResource } from 'ngx-guardian';
 
-export enum NgxGuardianResourceType {
-    FOO = 'FOO',
-}
+export const FOO: NgxGuardianResource = {
+    name: 'FOO',
+    routes: []
+};
 
-export const resources: NgxGuardianResource[] = [
-    {
-        name: NgxGuardianResourceType.FOO,
-        routes: []
-    }
-];
+/**
+ * Add here other resources
+ */
