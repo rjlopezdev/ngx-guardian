@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="ngx-guardian-logo.svg" width="200" height="200">
+  <img src="ngx-guardian-logo.svg" alt="Ngx Guardian logo" width="200" height="200">
   <p align="center"> Logo designed by <a href="https://www.behance.net/yomissmar"> Yomissmar </a> </p>
 </p>
 
@@ -22,7 +22,7 @@
   <br>
   <br>
   <a href="CONTRIBUTING.md"> Contributing </a>
-  .
+  ·
   <a href="LICENSE"> License </a>
 </p>
 
@@ -43,7 +43,7 @@
 
 * `npm install ngx-guardian --save`
 
-* Follow the [Setup](#setup) & [Permission Specification](#permission-specification) sections
+* Follow [Setup](#setup) & [Permission Specification](#permission-specification) sections
 
 # Setup
 
@@ -100,6 +100,7 @@ localStorage.setItem('ngx-guardian-role', 'ROLE_NAME');
         ├── ngx-roles.ts
         ├── ngx-permissions.ts
         ├── ngx-resources.ts
+        ├── ngx-config.ts
         ├── ngx-foo-manager.ts
         ├── ...
         └── ngx-other-foo-manager.ts
@@ -138,21 +139,11 @@ export enum NgxGuardianAction {
 
 import { NgxGuardianResource } from 'ngx-guardian';
 
-export enum NgxGuardianResourceType {
-    PIZZA = 'PIZZA',
-    PASTA = 'PASTA',
-}
+export const FOO: NgxGuardianResource = {
+    name: 'FOO',
+    routes: []
+};
 
-export const resources: NgxGuardianResource[] = [
-    {
-        name: NgxGuardianResourceType.PASTA,
-        routes: []
-    },
-        {
-        name: NgxGuardianResourceType.PIZZA,
-        routes: []
-    }
-]
 ```
 
 4. Define your permission managers
@@ -187,7 +178,7 @@ export const defaultManager: NgxGuardianManager = {
 
 # Directives usage
 
-___The purpose__ of ngx-guardian directives is to simplify the logic of the templates designed to __show, hide or modify the components or HTML code blocks__ according to permissions or user roles.
+__The purpose__ of ngx-guardian directives is to simplify the logic of the templates designed to __show, hide or modify the components or HTML code blocks__ according to permissions or user roles.
 
 ## ShowIfGranted
 
@@ -211,8 +202,8 @@ This directive __enable or disable__ a html block or component depending on whet
 
 ```html
 <!-- This component will be set disabled IF user HAS NOT CREATE permission over PIZZA resource -->
-<component-to-show-or-hide *ngxDisableIfNoGranted="READ - PIZZA">
-</component-to-show-or-hide>
+<component-to-enable-or-disable *ngxDisableIfNoGranted="READ - PIZZA">
+</component-to-enable-or-disable>
 
 <!-- This html block will be set disabled IF user HAS NOT READ permission over PIZZA resource -->
 <button *ngxShowIfGranted="UPDATE - PIZZA">
@@ -224,3 +215,7 @@ This directive __enable or disable__ a html block or component depending on whet
 # Service usage
 
 __The purpose__ of the Permission Service is to __offer an interface for communication__ with the permission manager.
+
+| Method | Signature | Output | Description |
+| --- | --- | --- | --- |
+isGranted | (action: _string_, resource: _string_) | __boolean__ | If user can perform an _action_ over _resource_
