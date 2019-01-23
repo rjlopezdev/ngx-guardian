@@ -18,9 +18,7 @@ export class ManagerCollection {
      */
     constructor(managers: NgxGuardianManager[]) {
         for (const manager of managers) {
-            this.managers.push(
-                new PermissionManager(new Role(manager.role), manager.permissions)
-            );
+            this.managers.push(new PermissionManager(manager.role, manager.permissions));
         }
     }
 

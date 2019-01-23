@@ -13,24 +13,32 @@ export class PermissionManager {
      */
     private role: Role;
     /**
-     * A list of available permissions for a @property role
+     * A Map that links resource name with its available actions
      */
-    private permissions: Map<string, Action[]> = new Map<string, Action[]>();
+    private permissions: Map<string, string[]> = new Map<string, string[]>();
+    /**
+     * A list of available resources
+     */
+    private resources: Resource[] = [];
+    /**
+     * A list of available actions
+     */
+    private actions: Action[] = [];
 
     /**
      * Creates a new permission manager with permissions for a role provided
      * @param role Role for manager
      * @param permissions Permissions for manager
      */
-    constructor(role: Role, permissions: NgxGuardianPermission[]) {
-        this.role = role;
+    constructor(role: string, permissions: NgxGuardianPermission[]) {
+        this.role = new Role(role);
         if (permissions) {
             for (const permission of permissions) {
-                const actionsToAdd: Action[] = [];
                 for (const action of permission.actions) {
-                    actionsToAdd.push(new Action(action));
+                    this.actions.push(new Action(action));
                 }
-                this.permissions.set(permission.resource, actionsToAdd);
+                this.resources.push(new Resource(permission.resource.name, null));
+                this.permissions.set(permission.resource.name, permission.actions);
             }
         }
     }
@@ -38,7 +46,7 @@ export class PermissionManager {
     /**
      * Return permission Map (resourceName, Permission)
      */
-    public getPermissions(): Map<string, Action[]> {
+    public getPermissions(): Map<string, string[]> {
         return this.permissions;
     }
 
@@ -58,8 +66,8 @@ export class PermissionManager {
     public isGranted(resourceName: string, permissionName: string): boolean {
         let isGranted = false;
         if (this.permissions.get(resourceName)) {
-            for (const permission of this.permissions.get(resourceName) as Action[]) {
-                if (permission.getName() === permissionName) {
+            for (const permission of this.permissions.get(resourceName)) {
+                if (permission === permissionName) {
                     isGranted = true;
                     break;
                 }

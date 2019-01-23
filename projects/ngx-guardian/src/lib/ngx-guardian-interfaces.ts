@@ -4,7 +4,7 @@ export interface NgxGuardianManager {
 }
 
 export interface NgxGuardianPermission {
-    resource: string;
+    resource: NgxGuardianResource;
     actions: string[];
 }
 

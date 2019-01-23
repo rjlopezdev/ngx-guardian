@@ -11,21 +11,30 @@ describe('PermissionManager class', () => {
     beforeEach(() => {
         permissions = [
             {
-                resource: 'BURGER',
+                resource: {
+                    name: 'BURGER',
+                    routes: []
+                },
                 actions: [
                     'EAT',
                     'BUY'
                 ]
             },
             {
-                resource: 'TACO',
+                resource: {
+                    name: 'TACO',
+                    routes: []
+                },
                 actions: [
                     'COOK',
                     'EAT'
                 ]
             },
             {
-                resource: 'HOT-DOG',
+                resource: {
+                    name: 'HOT-DOG',
+                    routes: []
+                },
                 actions: [
                     'THROW',
                     'CLEAN'
@@ -33,21 +42,21 @@ describe('PermissionManager class', () => {
             }
         ];
         role = new Role('DUMMY');
-        manager = new PermissionManager(role, permissions);
+        manager = new PermissionManager(role.getName(), permissions);
     });
 
     it('#constructor should create a PermissionManager instance with role name equals to DUMMY', () => {
-        const mng = new PermissionManager(role, permissions);
+        const mng = new PermissionManager(role.getName(), permissions);
         expect(mng.getRoleName()).toBe('DUMMY');
     });
 
     it('#constructor should create a PermissionManager instance with permissions equals to empty Map', () => {
-        const mng = new PermissionManager(role, null);
+        const mng = new PermissionManager(role.getName(), null);
         expect(mng.getPermissions().size).toBe(0);
     });
 
     it('#getPermissions should return an empty Map', () => {
-        manager = new PermissionManager(role, null);
+        manager = new PermissionManager(role.getName(), null);
         expect(manager.getPermissions().size).toBe(0);
     });
 
