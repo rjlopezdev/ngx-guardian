@@ -108,6 +108,14 @@ export class NgxGuardianService {
   }
 
   /**
+   * Return true if user can navigate to requested url
+   * @param url requested url to navigate
+   */
+  public canNavigateTo(url: string): boolean {
+    throw new Error('no implemented');
+  }
+
+  /**
    * Set initial configuration for Permission Manager:
    * 1. Set available Permission Manager's
    * 2. Set current manager following the strategy below:

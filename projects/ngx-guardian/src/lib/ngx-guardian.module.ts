@@ -5,6 +5,7 @@ import { NgxGuardianService } from './ngx-guardian.service';
 import { ShowIfGrantedDirective } from './directives/show-if-granted.directive';
 import { DisableIfNoGrantedDirective } from './directives/disable-if-no-granted.directive';
 import { NgxGuardianConfig } from './config';
+import { NgxGuardianNavigateToRouteGuard } from './ngx-guardian-navigate-to-route.guard';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { NgxGuardianConfig } from './config';
   exports: [
     NgxGuardianComponent,
     ShowIfGrantedDirective,
-    DisableIfNoGrantedDirective
+    DisableIfNoGrantedDirective,
+    NgxGuardianNavigateToRouteGuard
   ]
 })
 export class NgxGuardianModule {
