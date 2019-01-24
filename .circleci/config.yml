@@ -1,9 +1,14 @@
-version: 2
-jobs:
-  build:
-    working_directory: ~/ngx-guardian
+version: 2.1
+
+executors:
+  node_container:
     docker:
       - image: circleci/node:8-browsers
+    working_directory: ~/ngx-guardian
+
+jobs:
+  setup:
+    executor: node_container
     steps:
       - checkout
       - restore_cache:
@@ -13,4 +18,23 @@ jobs:
           key: ngx-guardian-{{ .Branch }}-{{ checksum "package-lock.json" }}
           paths:
             - "node_modules"
+      - persist_to_workspace:
+          root: ~/ngx-guardian
+          paths:
+            - .
+
+  test:
+    executor: node_container
+    steps:
+      - attach_workspace:
+          at: ~/ngx-guardian
       - run: npm run test -- --no-watch --no-progress
+
+workflows:
+
+  setup-test:
+    jobs:
+      - setup
+      - test:
+          requires:
+            - setup
