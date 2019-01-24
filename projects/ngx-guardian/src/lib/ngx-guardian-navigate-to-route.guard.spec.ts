@@ -2,7 +2,7 @@ import { TestBed, async, inject } from '@angular/core/testing';
 
 import { NgxGuardianNavigateToRouteGuard } from './ngx-guardian-navigate-to-route.guard';
 
-describe('NgxGuardianNavigateToRouteGuard', () => {
+xdescribe('NgxGuardianNavigateToRouteGuard', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [NgxGuardianNavigateToRouteGuard]
