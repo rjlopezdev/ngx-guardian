@@ -62,8 +62,14 @@ export class NgxGuardianService {
    * @param role role name
    * @returns if manager is set successfully
    */
-  public setManagerByRole(role: Role): boolean {
-    throw new Error('no implemented');
+  public setManagerByRole(role: string): boolean {
+    const managerToSet = this.managerCollection.getManagerByRoleName(role);
+    if (managerToSet) {
+      this.currentManager = managerToSet;
+      return true;
+    } else {
+      throw new Error(`No manager set for role: ${role}`);
+    }
   }
 
   /**
@@ -74,18 +80,13 @@ export class NgxGuardianService {
   }
 
   /**
-   * Add permission to the resource provided
-   * Return true if permission added successfully, else false
+   * Add action to the resource provided
+   * Return true if action added successfully, else false
    * @param permission permission to add
    * @param resourceName the of the resource to add permission
    * @returns if permission added
    */
-  public addPermission(permission: NgxGuardianPermission, resourceName: string): boolean {
-    throw new Error('no implemented');
-  }
-
-
-  public addAction(action: string) {
+  public addActionToResource(permission: NgxGuardianPermission, resourceName: string): boolean {
     throw new Error('no implemented');
   }
 
@@ -150,8 +151,12 @@ export class NgxGuardianService {
     // Set @currentManager from _setFromStorage_
     if (config.setFromStorage) {
       // Set role from localStorage 'ngx-guardian-role' variable
-      const role = localStorage.getItem('ngx-guardian-role');
-      this.currentManager = this.managerCollection.getManagerByRoleName(role);
+      const roleToSet = localStorage.getItem('ngx-guardian-role');
+      if (roleToSet) {
+        this.setManagerByRole(roleToSet);
+      } else {
+        console.warn(`No manager found in localStorage. Please, set as 'ngx-guardian-role' key`);
+      }
     } else {
       this.isEnabled = false;
       console.warn('No default manager was provided. Please, consider configuring some with defaultRole or setByCookie strategies');

@@ -10,7 +10,7 @@ export class ManagerCollection {
     /**
      * Permission Manager list
      */
-    private managers: PermissionManager[] = [];
+    public managers: PermissionManager[] = [];
 
     /**
      * Creates a new collection of PermissionManager's
