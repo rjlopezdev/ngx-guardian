@@ -1,0 +1,50 @@
+{
+  "rules": {
+    "message": {
+      "skip-validation": "^(Merge)\\s",
+      "max-length": 100,
+      "banned-phrases": [
+        "minor change",
+        "minor fix",
+        "minor refactor",
+        "pr change",
+        "pr comment",
+        "following pr"
+      ],
+      "no-period-at-end": true,
+      "no-upper-first": true
+    },
+    "type": {
+      "valid-types": [
+        "feat",
+        "fix",
+        "docs",
+        "refact",
+        "perf",
+        "test",
+        "revert",
+        "ci",
+        "dep"
+      ]
+    },
+    "scope": {
+      "valid-scopes": [
+        "model",
+        "directive",
+        "service",
+        "guard",
+        "schematics",
+        "config",
+        "readme",
+        "contrib",
+        "update"
+      ],
+      "no-dash": true,
+      "no-underscore": true
+    },
+    "subject": {
+      "no-period-at-end": true,
+      "no-upper-first": true
+    }
+  }
+}
