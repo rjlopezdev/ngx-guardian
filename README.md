@@ -206,7 +206,7 @@ This directive __enable or disable__ a html block or component depending on whet
 </component-to-enable-or-disable>
 
 <!-- This html block will be set disabled IF user HAS NOT READ permission over PIZZA resource -->
-<button *ngxShowIfGranted="UPDATE - PIZZA">
+<button *ngxDisableIfNoGranted="UPDATE - PIZZA">
     Update pizza toppings
 </button>
 ```

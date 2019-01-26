@@ -2,12 +2,12 @@
 
 ## Setup environment
 
-1. Fork repository
-2. Clone repo:
+* Fork repository
+* Clone repo:
 
     `git clone <yor_fork_repo_url>`
 
-3. Setup project:
+* Setup project:
 
     `npm install`
 
@@ -15,7 +15,7 @@
 
     _Now project is running_
 
-4. Init testing app:
+* Init testing app:
     * Download [demo app](TODO) from Stackblitz
     * Setup as a normal Angular Project
     * Remove __ngx-guardian__ from package.json dependencies
