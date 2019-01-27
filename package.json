@@ -9,7 +9,8 @@
     "lint": "ng lint",
     "e2e": "ng e2e",
     "doc": "npx compodoc -p projects/ngx-guardian/tsconfig.lib.json -s",
-    "package": "sh pack.sh"
+    "package": "sh pack.sh",
+    "codecov": "codecov"
   },
   "private": true,
   "dependencies": {
@@ -38,6 +39,7 @@
     "@types/jasmine": "~3.3.8",
     "@types/jasminewd2": "~2.0.3",
     "@types/node": "~10.12.18",
+    "codecov": "^3.1.0",
     "codelyzer": "~4.5.0",
     "husky": "^1.3.1",
     "jasmine-core": "~3.3.0",
