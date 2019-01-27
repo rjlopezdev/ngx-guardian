@@ -1,4 +1,4 @@
-import { NgxGuardianConfig } from 'ngx-guardian';
+import { NgxGuardianConfig } from '../../lib/config';
 import { NgxGuardianRole } from './roles';
 import { defaultManager } from './default-manager';
 

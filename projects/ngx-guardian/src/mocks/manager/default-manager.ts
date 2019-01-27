@@ -1,4 +1,4 @@
-import { NgxGuardianManager } from 'ngx-guardian';
+import { NgxGuardianManager } from '../../lib/ngx-guardian-interfaces';
 import { NgxGuardianRole } from './roles';
 import { FOO } from './resources';
 import { NgxGuardianAction } from './actions';
