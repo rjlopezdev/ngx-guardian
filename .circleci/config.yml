@@ -28,7 +28,7 @@ jobs:
     steps:
       - attach_workspace:
           at: ~/ngx-guardian
-      - run: npm run test -- --no-watch --no-progress
+      - run: npm run test -- --no-watch --no-progress --code-coverage
 
 workflows:
 
