@@ -1,6 +1,6 @@
 import { ShowIfGrantedDirective } from './show-if-granted.directive';
 import { TestBed } from '@angular/core/testing';
-import { EditPizzaComponent } from '../../mocks/edit-pizza.component';
+import { EditPizzaComponent } from '../../mocks/components/edit-pizza.component';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { NgxGuardianService } from '../ngx-guardian.service';
 

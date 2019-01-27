@@ -19,7 +19,7 @@
         "feat",
         "fix",
         "docs",
-        "refact",
+        "refactor",
         "perf",
         "test",
         "revert",
@@ -37,6 +37,7 @@
         "config",
         "readme",
         "contrib",
+        "mock",
         "update"
       ],
       "no-dash": true,
