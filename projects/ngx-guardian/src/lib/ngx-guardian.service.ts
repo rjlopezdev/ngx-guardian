@@ -30,11 +30,11 @@ export class NgxGuardianService {
   /**
    * Route to navigate if no manager set
    */
-  protected unauthorizedRoute = '/no-auth';
+  private unauthorizedRoute = '/no-auth';
   /**
    * Route to navigate if user hasn't permissions
    */
-  protected noGrantedRoute = '/no-granted';
+  private noGrantedRoute = '/no-granted';
 
 
   /**
@@ -142,12 +142,6 @@ export class NgxGuardianService {
       throw new Error('No managers provided');
     }
 
-    // Set @currentManager from _defaultRole_
-    if (config.defaultRole) {
-      this.currentManager = this.managerCollection.getManagerByRoleName(config.defaultRole);
-      return;
-    }
-
     // Set @currentManager from _setFromStorage_
     if (config.setFromStorage) {
       // Set role from localStorage 'ngx-guardian-role' variable
@@ -158,8 +152,19 @@ export class NgxGuardianService {
         console.warn(`No manager found in localStorage. Please, set as 'ngx-guardian-role' key`);
       }
     } else {
-      this.isEnabled = false;
       console.warn('No default manager was provided. Please, consider configuring some with defaultRole or setByCookie strategies');
+    }
+
+    // Set @currentManager from _defaultRole_
+    if (config.defaultRole) {
+      const managerToSet = this.managerCollection.getManagerByRoleName(config.defaultRole);
+      if (managerToSet) {
+        this.currentManager = this.managerCollection.getManagerByRoleName(config.defaultRole);
+      } else {
+        this.isEnabled = false;
+        console.warn(`No manager found for role: <${config.defaultRole}>`);
+      }
+      return;
     }
 
   }
