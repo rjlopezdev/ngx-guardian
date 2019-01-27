@@ -42,6 +42,7 @@ export class NgxGuardianService {
    * @param config permission manager configuration
    */
   constructor(@Optional() config: NgxGuardianConfig) {
+    this.isEnabled = false;
     this.loadConfig(config);
     console.warn(this.currentManager);
   }
@@ -145,7 +146,7 @@ export class NgxGuardianService {
     }
 
     // Set @managerCollection
-    if (config.managers) {
+    if (config.managers && config.managers.length) {
       this.managerCollection = new ManagerCollection(config.managers);
     } else {
       throw new Error('No managers provided');
@@ -160,10 +161,8 @@ export class NgxGuardianService {
         this.isEnabled = true;
         return;
       } else {
-        console.warn(`No manager found in localStorage. Please, set as 'ngx-guardian-role' key`);
+        console.warn(`No manager found in localStorage.`);
       }
-    } else {
-      console.warn('No default manager was provided. Please, consider configuring some with defaultRole or setByCookie strategies');
     }
 
     // Set @currentManager from _defaultRole_
@@ -176,6 +175,8 @@ export class NgxGuardianService {
         this.isEnabled = false;
         console.warn(`No manager found for role: <${config.defaultRole}>`);
       }
+    } else {
+      console.warn('No default manager was provided. Please, consider configuring some with defaultRole or setFromLocalStorage strategies');
     }
 
   }

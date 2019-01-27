@@ -135,6 +135,96 @@ describe('NgxGuardianService instantiation', () => {
     service = TestBed.get(NgxGuardianService);
     expect(service.noGrantedRoute).toBe('/custom-no-granted');
   });
+
+  it(`#loadConfig should throw Error "No managers provided" when config.managers is an empty list`, () => {
+    TestBed.configureTestingModule({
+      providers: [
+        NgxGuardianService,
+        {
+          provide: NgxGuardianConfig,
+          useValue: {
+            managers: []
+          }
+        }
+      ]
+    });
+    expect(() => TestBed.get(NgxGuardianService)).toThrow(new Error('No managers provided'));
+  });
+
+  it(`#loadConfig should throw Error "No managers provided" when config.managers is no provided`, () => {
+    TestBed.configureTestingModule({
+      providers: [
+        NgxGuardianService,
+        {
+          provide: NgxGuardianConfig,
+          useValue: {}
+        }
+      ]
+    });
+    expect(() => TestBed.get(NgxGuardianService)).toThrow(new Error('No managers provided'));
+  });
+
+  it(`#loadConfig should console.warn "No manager found in localStorage."
+  when config.setFromStorage is true and no localStorage is set`, () => {
+    spyOn(console, 'warn');
+    TestBed.configureTestingModule({
+      providers: [
+        NgxGuardianService,
+        {
+          provide: NgxGuardianConfig,
+          useValue: {
+            managers: [
+              defaultManager
+            ],
+            setFromStorage: true
+          }
+        }
+      ]
+    });
+    localStorage.clear();
+    service = TestBed.get(NgxGuardianService);
+    expect(console.warn).toHaveBeenCalledWith(`No manager found in localStorage.`);
+  });
+
+  it(`#loadConfig should set defaultManager whose role name is "DEFAULT" when setFromStorage equals to true"`, () => {
+    TestBed.configureTestingModule({
+      providers: [
+        NgxGuardianService,
+        {
+          provide: NgxGuardianConfig,
+          useValue: {
+            managers: [
+              defaultManager
+            ],
+            setFromStorage: true
+          }
+        }
+      ]
+    });
+    localStorage.setItem('ngx-guardian-role', 'DEFAULT');
+    service = TestBed.get(NgxGuardianService);
+    expect(service.currentManager.role.name).toBe('DEFAULT');
+  });
+
+  it(`#loadConfig should throw Error "No manager set for role: FOO" when setFromStorage equals to true"
+  and value for <ngx-guardian-role> is not a valid role`, () => {
+    TestBed.configureTestingModule({
+      providers: [
+        NgxGuardianService,
+        {
+          provide: NgxGuardianConfig,
+          useValue: {
+            managers: [
+              defaultManager
+            ],
+            setFromStorage: true
+          }
+        }
+      ]
+    });
+    localStorage.setItem('ngx-guardian-role', 'FOO');
+    expect(() => TestBed.get(NgxGuardianService)).toThrow(new Error(`No manager set for role: FOO`));
+  });
 });
 
 describe('NgxGuardianService granting permission', () => {
@@ -197,4 +287,44 @@ describe('NgxGuardianService granting permission', () => {
   it('#isGranted should return "false" when @action equals to "null" and @resource equals to "null"', () => {
     expect(service.isGranted(null, null)).toBeFalsy();
   });
+
+  it('#isGranted should should return false if user is granted but manager is disabled', () => {
+    spyOn(console, 'warn');
+    service.disableManager();
+    service.isGranted(null, null);
+    expect(service.isGranted('FOO', 'READ')).toBeFalsy();
+  });
+});
+
+describe('NgxGuardianService disabling manager', () => {
+
+  let service: any;
+
+  beforeEach(() => {
+    TestBed.configureTestingModule({
+      providers: [
+        NgxGuardianService,
+        {
+          provide: NgxGuardianConfig,
+          useValue: {
+            managers: [
+              defaultManager
+            ],
+            defaultRole: NgxGuardianRole.DEFAULT,
+          }
+        }
+      ]
+    });
+    service = TestBed.get(NgxGuardianService);
+  });
+
+  it('#disableManager defaultManager should be enabled when set with valid config', () => {
+    expect(service.isEnabled).toBeTruthy();
+  });
+
+  it('#disableManager defaultManager should be disabled', () => {
+    service.disableManager();
+    expect(service.isEnabled).toBeFalsy();
+  });
+
 });
