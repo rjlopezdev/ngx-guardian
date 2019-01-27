@@ -1,6 +1,6 @@
 import { Role } from '../lib/model/role';
 
-describe('PermissionManager class', () => {
+describe('Role class', () => {
 
     it('#construstor should instantiate a role with @name equals to "DEFAULT" ', () => {
         const role: any = new Role('DEFAULT');

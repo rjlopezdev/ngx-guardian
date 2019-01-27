@@ -1,5 +1,5 @@
 import { Resource } from './resource';
-import { Action } from './permission';
+import { Action } from './action';
 import { Role } from './role';
 import { NgxGuardianPermission } from '../ngx-guardian-interfaces';
 

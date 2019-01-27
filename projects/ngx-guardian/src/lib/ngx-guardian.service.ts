@@ -1,6 +1,6 @@
 import { Injectable, Optional } from '@angular/core';
 import { PermissionManager } from './model/permission-manager';
-import { Action } from './model/permission';
+import { Action } from './model/action';
 import { Resource } from './model/resource';
 import { ManagerCollection } from './model/manager-collection';
 import { Role } from './model/role';
