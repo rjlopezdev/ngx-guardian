@@ -58,6 +58,14 @@ export class PermissionManager {
     }
 
     /**
+     * Return permissions
+     * @returns a list of permissions
+     */
+    public getResources(): Resource[] {
+        return this.resources;
+    }
+
+    /**
      * If user is granted for the permission of the resource provided returns true
      * If not, return false
      * @param resourceName name of resource

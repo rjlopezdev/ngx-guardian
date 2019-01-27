@@ -18,6 +18,9 @@
   <br>
   <img src="https://img.shields.io/badge/maintainer-rjlopezdev-orange.svg?link=https://github.com/rjlopezdev">
   <img src="https://img.shields.io/badge/ng%20add-compatible-ff69b4.svg">
+  <a href="https://codecov.io/gh/rjlopezdev/ngx-guardian">
+  <img src="https://codecov.io/gh/rjlopezdev/ngx-guardian/branch/master/graph/badge.svg?token=rStxP4TP7r" />
+  </a>
   <img src="https://img.shields.io/badge/license-MIT-green.svg">
   <br>
   <br>
@@ -26,10 +29,13 @@
   <a href="LICENSE"> License </a>
 </p>
 
+Ngx Guardian is a minimal, powerfull and easy configurable _permission manager_ that grant the power to manage different roles in your Angular project.
+
 # Summary
 
 * [Installation](#installation)
 * [Setup](#setup)
+* [Manager preference setup](#manager-preference-setup)
 * [Directives Usage](#directives-usage)
 * [Service Usage](#service-usage)
 
@@ -91,6 +97,14 @@ localStorage.setItem('ngx-guardian-role', 'ROLE_NAME');
 | setFromStorage | boolean | false | - | Set role by localStorage value
 | unauthorizedRoute | string | //TO SPECIFY | - | Route to navigate if no manager set
 | noGrantedRoute | string | //TO SPECIFY | - | Route to navigate if user has no permissions
+
+# Manager preference setup
+
+As there are different strategies to configure the default manager, the following priority has been established:
+
+1. _setFromLocalStorage_ has priority over _defaultRole_ strategie.
+2. If no _setFromLocalStorage_ strategie is provided, default manager will be set with _defaultRole_ strategie.
+3. If no set manager strategie is provided, the permission manager will be disabled.
 
 # Proposed files structure
 
@@ -219,3 +233,8 @@ __The purpose__ of the Permission Service is to __offer an interface for communi
 | Method | Signature | Output | Description |
 | --- | --- | --- | --- |
 isGranted | (action: _string_, resource: _string_) | __boolean__ | If user can perform an _action_ over _resource_
+| disableManager | - | - | Disable default permission manager
+| setManagerByRole | (role: _string_) | __boolean__ | Set current manager for role provided
+| addActionToResource | (action: _string_, resource: _string_) | __boolean__ | Add the action for the resource provided
+| getPermissions | - | JSON | Returns the permission list for the current manager in JSON format
+| canNavigateTo | (url: _string_) | __boolean__ | Returns if the user is granted to navigate to the path provided

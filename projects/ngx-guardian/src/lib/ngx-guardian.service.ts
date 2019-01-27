@@ -53,6 +53,10 @@ export class NgxGuardianService {
    * @param permission permission to check
    */
   public isGranted(resource: string, action: string) {
+    if (!this.isEnabled) {
+      console.warn(`The manager for <${this.currentManager.getRoleName()}> is disabled`);
+      return false;
+    }
     return this.currentManager.isGranted(resource, action);
   }
 
@@ -86,9 +90,9 @@ export class NgxGuardianService {
    * @param resourceName the of the resource to add permission
    * @returns if permission added
    */
-  public addActionToResource(permission: NgxGuardianPermission, resourceName: string): boolean {
-    throw new Error('no implemented');
-  }
+  // public addActionToResource(action: string, resourceName: string): boolean {
+  //  throw new Error('no implemented');
+  // }
 
   /**
    * Add to manager the resource provided
@@ -96,9 +100,9 @@ export class NgxGuardianService {
    * @param resource resource to add
    * @returns if resource added
    */
-  public addResource(resource: NgxGuardianResource): boolean {
-    throw new Error('no implemented');
-  }
+  // public addResource(resource: NgxGuardianResource): boolean {
+  //  throw new Error('no implemented');
+  // }
 
   /**
    * Return a list of permissions in JSON format
@@ -113,7 +117,12 @@ export class NgxGuardianService {
    * @param url requested url to navigate
    */
   public canNavigateTo(url: string): boolean {
-    throw new Error('no implemented');
+    for (const resource of this.currentManager.getResources()) {
+      if (resource.hasRoute(url)) {
+        return true;
+      }
+    }
+    return false;
   }
 
   /**
@@ -148,6 +157,7 @@ export class NgxGuardianService {
       const roleToSet = localStorage.getItem('ngx-guardian-role');
       if (roleToSet) {
         this.setManagerByRole(roleToSet);
+        return;
       } else {
         console.warn(`No manager found in localStorage. Please, set as 'ngx-guardian-role' key`);
       }
@@ -164,7 +174,6 @@ export class NgxGuardianService {
         this.isEnabled = false;
         console.warn(`No manager found for role: <${config.defaultRole}>`);
       }
-      return;
     }
 
   }

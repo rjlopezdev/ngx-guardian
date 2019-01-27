@@ -20,4 +20,12 @@ export class Resource {
         this.name = name;
         this.routes = routes;
     }
+
+    public hasRoute(route: string) {
+        if (this.routes.includes(route)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }
