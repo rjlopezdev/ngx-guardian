@@ -157,6 +157,7 @@ export class NgxGuardianService {
       const roleToSet = localStorage.getItem('ngx-guardian-role');
       if (roleToSet) {
         this.setManagerByRole(roleToSet);
+        this.isEnabled = true;
         return;
       } else {
         console.warn(`No manager found in localStorage. Please, set as 'ngx-guardian-role' key`);
@@ -170,6 +171,7 @@ export class NgxGuardianService {
       const managerToSet = this.managerCollection.getManagerByRoleName(config.defaultRole);
       if (managerToSet) {
         this.currentManager = this.managerCollection.getManagerByRoleName(config.defaultRole);
+        this.isEnabled = true;
       } else {
         this.isEnabled = false;
         console.warn(`No manager found for role: <${config.defaultRole}>`);
