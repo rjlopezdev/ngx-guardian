@@ -1,5 +1,6 @@
 ---
 title: 'Feature request report'
+name: "\U0001F680Feature request"
 labels: feat
 assignees: rjlopezdev
 about: Propose a new feature
