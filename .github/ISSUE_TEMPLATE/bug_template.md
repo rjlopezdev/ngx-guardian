@@ -2,6 +2,7 @@
 name: "\U0001F41EBug report"
 labels: bug
 assignees: rjlopezdev
+about: Report a new issue
 ---
 
 # 🐞 Bug report
