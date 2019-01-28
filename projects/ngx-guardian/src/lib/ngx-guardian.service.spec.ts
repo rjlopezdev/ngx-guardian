@@ -225,6 +225,27 @@ describe('NgxGuardianService instantiation', () => {
     localStorage.setItem('ngx-guardian-role', 'FOO');
     expect(() => TestBed.get(NgxGuardianService)).toThrow(new Error(`No manager set for role: FOO`));
   });
+
+  it(`#loadConfig should console.warn "No manager found for role: <FOO>" when setFromStorage equals to "false"
+  and defaultRole equals to "FOO"`, () => {
+    spyOn(console, 'warn');
+    TestBed.configureTestingModule({
+      providers: [
+        NgxGuardianService,
+        {
+          provide: NgxGuardianConfig,
+          useValue: {
+            managers: [
+              defaultManager
+            ],
+            defaultRole: 'FOO'
+          }
+        }
+      ]
+    });
+    TestBed.get(NgxGuardianService);
+    expect(console.warn).toHaveBeenCalledWith(`No manager found for role: <FOO>`);
+  });
 });
 
 describe('NgxGuardianService granting permission', () => {

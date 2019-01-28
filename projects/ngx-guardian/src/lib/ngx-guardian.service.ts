@@ -26,7 +26,7 @@ export class NgxGuardianService {
   /**
    * Flag that determines if manager is enabled
    */
-  private isEnabled: boolean;
+  private isEnabled = false;
   /**
    * Route to navigate if no manager set
    */
@@ -42,9 +42,7 @@ export class NgxGuardianService {
    * @param config permission manager configuration
    */
   constructor(@Optional() config: NgxGuardianConfig) {
-    this.isEnabled = false;
     this.loadConfig(config);
-    console.warn(this.currentManager);
   }
 
   /**
@@ -109,9 +107,9 @@ export class NgxGuardianService {
    * Return a list of permissions in JSON format
    * @returns JSON list of permissions
    */
-  public getPermissions(): JSON {
-    return JSON.parse(this.currentManager.getPermissions().toString());
-  }
+  // public getPermissions(): string {
+  //  return JSON.stringify(this.currentManager.getPermissions())
+  // }
 
   /**
    * Return true if user can navigate to requested url
