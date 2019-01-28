@@ -118,12 +118,7 @@ export class NgxGuardianService {
    * @param url requested url to navigate
    */
   public canNavigateTo(url: string): boolean {
-    for (const resource of this.currentManager.getResources()) {
-      if (resource.hasRoute(url)) {
-        return true;
-      }
-    }
-    return false;
+    return this.currentManager.canNavigateTo(url);
   }
 
   /**

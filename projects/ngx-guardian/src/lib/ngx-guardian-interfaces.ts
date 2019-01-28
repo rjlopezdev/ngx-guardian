@@ -6,6 +6,7 @@ export interface NgxGuardianManager {
 export interface NgxGuardianPermission {
     resource: NgxGuardianResource;
     actions: string[];
+    forbiddenRoutes?: string[];
 }
 
 export interface NgxGuardianResource {

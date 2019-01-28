@@ -13,12 +13,13 @@ describe('PermissionManager class', () => {
             {
                 resource: {
                     name: 'BURGER',
-                    routes: []
+                    routes: ['/burger']
                 },
                 actions: [
                     'EAT',
                     'BUY'
-                ]
+                ],
+                forbiddenRoutes: ['/forbidden']
             },
             {
                 resource: {
@@ -74,5 +75,21 @@ describe('PermissionManager class', () => {
 
     it('#isGranted should return false', () => {
         expect(manager.isGranted('BURGUER', 'FOO')).toBeFalsy();
+    });
+
+    it('#canNavigateTo should return "true" when @url equals to "/burger"', () => {
+        expect(manager.canNavigateTo('/burger')).toBeTruthy();
+    });
+
+    it('#canNavigateTo should return false when @url equals to "/forbidden"', () => {
+        expect(manager.canNavigateTo('/forbidden')).toBeFalsy();
+    });
+
+    it('#canNavigateTo should return false when @url equals to "/UNKNOWN"', () => {
+        expect(manager.canNavigateTo('/UNKNOWN')).toBeFalsy();
+    });
+
+    it('#canNavigateTo should return false when @url equals to null', () => {
+        expect(manager.canNavigateTo('/UNKNOWN')).toBeFalsy();
     });
 });

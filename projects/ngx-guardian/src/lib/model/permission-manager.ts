@@ -24,6 +24,10 @@ export class PermissionManager {
      * A list of available actions
      */
     private actions: Action[] = [];
+    /**
+     * A list of forbidden routes
+     */
+    private forbiddenRoutes: string[] = [];
 
     /**
      * Creates a new permission manager with permissions for a role provided
@@ -37,7 +41,12 @@ export class PermissionManager {
                 for (const action of permission.actions) {
                     this.actions.push(new Action(action));
                 }
-                this.resources.push(new Resource(permission.resource.name, null));
+                if (permission.forbiddenRoutes) {
+                    for (const forbiddenRoute of permission.forbiddenRoutes) {
+                        this.forbiddenRoutes.push(forbiddenRoute);
+                    }
+                }
+                this.resources.push(new Resource(permission.resource.name, permission.resource.routes));
                 this.permissions.set(permission.resource.name, permission.actions);
             }
         }
@@ -82,5 +91,17 @@ export class PermissionManager {
             }
         }
         return isGranted;
+    }
+
+    public canNavigateTo(url: string) {
+        if (this.forbiddenRoutes.includes(url)) {
+            return false;
+        }
+        for (const resource of this.resources) {
+            if (resource.hasRoute(url)) {
+                return true;
+            }
+        }
+        return false;
     }
 }
