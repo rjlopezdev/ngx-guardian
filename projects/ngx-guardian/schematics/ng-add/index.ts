@@ -12,8 +12,14 @@ import {
   noop,
   filter
 } from '@angular-devkit/schematics';
+import {
+  buildDefaultPath,
+  getWorkspace,
+  addPackageJsonDependency,
+  NodeDependency,
+  NodeDependencyType
+} from 'schematics-utilities';
 import { strings, normalize } from '@angular-devkit/core';
-import { buildDefaultPath, getWorkspace } from 'schematics-utilities';
 
 function setupOptions(host: Tree, options: any): Tree {
   const workspace = getWorkspace(host);
@@ -40,6 +46,8 @@ export default function(options: any): Rule {
 
       const movePath = normalize(options.path);
 
+      addDependencies(tree);
+
       const rule = chain([
         mergeWith(apply(url('./files'), [
           options.spec ? noop() : filter(path => !path.endsWith('.spec.ts')),
@@ -50,4 +58,14 @@ export default function(options: any): Rule {
 
       return rule(tree, _context);
     };
+}
+
+function addDependencies(host: Tree): Tree {
+  const dependencies: NodeDependency[] = [
+    { type: NodeDependencyType.Default, version: '1.0.0', name: 'ngx-guardian' }
+  ];
+
+  dependencies.forEach(dependency => addPackageJsonDependency(host, dependency));
+
+  return host;
 }

@@ -13,14 +13,16 @@ import { NgxGuardianNavigateToRouteGuard } from './ngx-guardian-navigate-to-rout
     ShowIfGrantedDirective,
     DisableIfNoGrantedDirective
   ],
-  providers: [NgxGuardianService],
+  providers: [
+    NgxGuardianService,
+    NgxGuardianNavigateToRouteGuard
+  ],
   imports: [
   ],
   exports: [
     NgxGuardianComponent,
     ShowIfGrantedDirective,
-    DisableIfNoGrantedDirective,
-    NgxGuardianNavigateToRouteGuard
+    DisableIfNoGrantedDirective
   ]
 })
 export class NgxGuardianModule {
