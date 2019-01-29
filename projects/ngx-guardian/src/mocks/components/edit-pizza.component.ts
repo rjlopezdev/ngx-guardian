@@ -3,8 +3,9 @@ import { Component } from '@angular/core';
 @Component({
   template: `
   <h2> Pizza Edit form </h2>
-  <input class="blockToManage" *ngxShowIfGranted="EDIT - PIZZA" type="text" value="Carbonara">
-  <button class="blockToDisabled" *ngxDisableIfNoGranted="BURN - PIZZA"> Submit </button>
+  <input class="granted" *ngxShowIfGranted="'CREATE - FOO'" type="text" value="Carbonara">
+  <input class="noGranted" *ngxShowIfGranted="'UNKNOWN - FOO'" type="text" value="Pomodoro">
+  <button class="blockToDisabled"> Submit </button>
   `
 })
 export class EditPizzaComponent { }

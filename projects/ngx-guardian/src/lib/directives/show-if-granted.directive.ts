@@ -19,8 +19,9 @@ export class ShowIfGrantedDirective {
    * Set value for directive input ( 'PERMISSION - RESOURCE' )
    */
   @Input() set ngxShowIfGranted(permission: string) {
+    console.warn(permission.split('-'));
     const permissionFormated = permission.split('-').map((i) => i.trim());
-    this.isGranted(permissionFormated[0], permissionFormated[1]);
+    this.isGranted(permissionFormated[1], permissionFormated[0]);
   }
 
   /**
@@ -29,8 +30,8 @@ export class ShowIfGrantedDirective {
    * @param resourceName the name of resource
    * @param action the name of permission
    */
-  private isGranted(resourceName: string, action: string) {
-    if (this.permissionManagerService.isGranted(resourceName, action)) {
+  private isGranted(action: string, resourceName: string) {
+    if (this.permissionManagerService.isGranted(action, resourceName)) {
       this.viewContainer.createEmbeddedView(this.templateRef);
     } else {
       this.viewContainer.clear();
