@@ -19,7 +19,6 @@ export class ShowIfGrantedDirective {
    * Set value for directive input ( 'PERMISSION - RESOURCE' )
    */
   @Input() set ngxShowIfGranted(permission: string) {
-    console.warn(permission.split('-'));
     const permissionFormated = permission.split('-').map((i) => i.trim());
     this.isGranted(permissionFormated[1], permissionFormated[0]);
   }
