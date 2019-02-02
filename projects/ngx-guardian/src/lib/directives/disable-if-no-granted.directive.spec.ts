@@ -19,12 +19,12 @@ describe('DisableIfNoGrantedDirective', () => {
   });
 
   it('should disable input', () => {
-    const input: HTMLElement = fixture.nativeElement.querySelector('.blockToBeEnabled');
+    const input: HTMLElement = fixture.nativeElement.querySelector('.blockToDisable');
     expect(input.getAttribute('disabled')).toBeTruthy();
   });
 
   it('should not disable input', () => {
-    const input: HTMLElement = fixture.nativeElement.querySelector('.blockToDisable');
-    expect(input.getAttribute('disabled')).toBeTruthy();
+    const input: HTMLElement = fixture.nativeElement.querySelector('.blockToBeEnabled');
+    expect(input.getAttribute('disabled')).toBeFalsy();
   });
 });

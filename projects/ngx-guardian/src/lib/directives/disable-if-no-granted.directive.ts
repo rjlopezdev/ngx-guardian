@@ -33,7 +33,7 @@ export class DisableIfNoGrantedDirective {
    */
   @Input() set ngxDisableIfNoGranted(permission: string) {
     const permissionFormated = permission.split('-').map((i) => i.trim());
-    this.isGranted(permissionFormated[0], permissionFormated[1]);
+    this.isGranted(permissionFormated[1], permissionFormated[0]);
   }
 
   /**
