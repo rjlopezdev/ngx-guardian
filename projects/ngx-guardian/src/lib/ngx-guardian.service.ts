@@ -1,11 +1,7 @@
 import { Injectable, Optional } from '@angular/core';
 import { PermissionManager } from './model/permission-manager';
-import { Action } from './model/action';
-import { Resource } from './model/resource';
 import { ManagerCollection } from './model/manager-collection';
-import { Role } from './model/role';
-import { NGX_GUARDIAN_CONFIG, NgxGuardianConfig } from './config';
-import { NgxGuardianPermission, NgxGuardianResource } from './ngx-guardian-interfaces';
+import { NgxGuardianConfig } from './config';
 
 /**
  * Service for permissions management
@@ -30,11 +26,11 @@ export class NgxGuardianService {
   /**
    * Route to navigate if no manager set
    */
-  private unauthorizedRoute = '/no-auth';
+  private _unauthorizedRoute = '/no-auth';
   /**
    * Route to navigate if user hasn't permissions
    */
-  private noGrantedRoute = '/no-granted';
+  private _noGrantedRoute = '/no-granted';
 
 
   /**
@@ -119,23 +115,33 @@ export class NgxGuardianService {
     return this.currentManager.canNavigateTo(url);
   }
 
+  get unauthorizedRoute(): string {
+    return this._unauthorizedRoute;
+  }
+
+  get noGrantedRoute(): string {
+    return this._noGrantedRoute;
+  }
+
   /**
    * Set initial configuration for Permission Manager:
    * 1. Set available Permission Manager's
    * 2. Set current manager following the strategy below:
-   *  - If defaultRole is provided
+   *  - If setFromStorage is provided, set it
+   *  - If default role is provided, set it
+   *  - If no strategy provided, permission manager will be disabled
    * @param config a congiguration of permission manager
    */
   private loadConfig(config: NgxGuardianConfig) {
 
     if (config.unauthorizedRoute) {
       // Set unauthorized route
-      this.unauthorizedRoute = config.unauthorizedRoute;
+      this._unauthorizedRoute = config.unauthorizedRoute;
     }
 
     if (config.noGrantedRoute) {
       // Set no granted route
-      this.noGrantedRoute = config.noGrantedRoute;
+      this._noGrantedRoute = config.noGrantedRoute;
     }
 
     // Set @managerCollection
