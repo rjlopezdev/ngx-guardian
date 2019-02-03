@@ -17,7 +17,14 @@ export class NgxGuardianNavigateToRouteGuard implements CanActivate {
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
-    if (this.isGranted(state.url)) {
+    if (this.permissionManager.isEnabled) {
+      if (this.isGranted(state.url)) {
+        return true;
+      } else {
+        this.router.navigate(['/no-granted']);
+        return false;
+      }
+    } else if (this.isGranted(state.url)) {
       return true;
     } else {
       this.router.navigate(['/no-auth']);

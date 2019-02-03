@@ -22,7 +22,7 @@ export class NgxGuardianService {
   /**
    * Flag that determines if manager is enabled
    */
-  private isEnabled = false;
+  private _isEnabled = false;
   /**
    * Route to navigate if no manager set
    */
@@ -42,13 +42,20 @@ export class NgxGuardianService {
   }
 
   /**
+   * isEnabled getter
+   */
+  public get isEnabled(): boolean {
+    return this._isEnabled;
+  }
+
+  /**
    * Returns if user has the permission for the resource provided
    * If granted returns true else false
    * @param resource resource to check
    * @param permission permission to check
    */
   public isGranted(resource: string, action: string) {
-    if (!this.isEnabled) {
+    if (!this._isEnabled) {
       console.warn(`The manager for <${this.currentManager.getRoleName()}> is disabled`);
       return false;
     }
@@ -75,7 +82,7 @@ export class NgxGuardianService {
    * Disable permission manager
    */
   public disableManager() {
-    this.isEnabled = false;
+    this._isEnabled = false;
   }
 
   /**
@@ -157,7 +164,7 @@ export class NgxGuardianService {
       const roleToSet = localStorage.getItem('ngx-guardian-role');
       if (roleToSet) {
         this.setManagerByRole(roleToSet);
-        this.isEnabled = true;
+        this._isEnabled = true;
         return;
       } else {
         console.warn(`No manager found in localStorage.`);
@@ -169,9 +176,9 @@ export class NgxGuardianService {
       const managerToSet = this.managerCollection.getManagerByRoleName(config.defaultRole);
       if (managerToSet) {
         this.currentManager = this.managerCollection.getManagerByRoleName(config.defaultRole);
-        this.isEnabled = true;
+        this._isEnabled = true;
       } else {
-        this.isEnabled = false;
+        this._isEnabled = false;
         console.warn(`No manager found for role: <${config.defaultRole}>`);
       }
     } else {

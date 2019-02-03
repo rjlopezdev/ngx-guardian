@@ -8,6 +8,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { EditPizzaComponent } from '../mocks/components/edit-pizza.component';
 import { EatTacoComponent } from '../mocks/components/eat-taco.component';
 import { Router } from '@angular/router';
+import { NgxGuardianService } from './ngx-guardian.service';
 
 describe('NgxGuardianNavigateToRouteGuard', () => {
 
@@ -45,7 +46,15 @@ describe('NgxGuardianNavigateToRouteGuard', () => {
     expect(location.path()).toBe('/taco');
   }));
 
-  it('should no navigate to "/forbidden"', fakeAsync(() => {
+  it('should no navigate to "/forbidden" and redirect to "/no-granted"', fakeAsync(() => {
+    router.navigate(['/forbidden']);
+    tick();
+    expect(location.path()).toBe('/no-granted');
+  }));
+
+  it('should no navigate to "/forbidden" and redirect to "/no-auth"', fakeAsync(() => {
+    const service: NgxGuardianService = TestBed.get(NgxGuardianService);
+    service.disableManager();
     router.navigate(['/forbidden']);
     tick();
     expect(location.path()).toBe('/no-auth');

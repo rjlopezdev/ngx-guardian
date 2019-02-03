@@ -23,6 +23,10 @@ export const routes: Routes = [
             {
                 path: 'no-auth',
                 component: EatTacoComponent
+            },
+            {
+                path: 'no-granted',
+                component: EatTacoComponent
             }
         ]
     }

@@ -95,8 +95,8 @@ localStorage.setItem('ngx-guardian-role', 'ROLE_NAME');
 | managers | NgxGuardianManager[] | - | :heavy_check_mark: | Permission Managers for application (with roles & actions over resources)
 | defaultRole | string | - | - | Default role to set its manager (if no provided, manager is disabled)
 | setFromStorage | boolean | false | - | Set role by localStorage value
-| unauthorizedRoute | string | 'no-auth' | - | Route to navigate if no manager set
-| noGrantedRoute | string | 'no-granted' | - | Route to navigate if user has no permissions
+| unauthorizedRoute | string | "no-auth" | - | Route to navigate if no manager set
+| noGrantedRoute | string | "no-granted" | - | Route to navigate if user has no permissions
 
 # Manager preference setup
 
