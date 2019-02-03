@@ -91,12 +91,12 @@ localStorage.setItem('ngx-guardian-role', 'ROLE_NAME');
 ## forRoot() Config
 
 | Name | Type | Default | Required | Description |
-| --- | --- | :---: | :---: | --- |
+| --- | :---: | :---: | :---: | --- |
 | managers | NgxGuardianManager[] | - | :heavy_check_mark: | Permission Managers for application (with roles & actions over resources)
 | defaultRole | string | - | - | Default role to set its manager (if no provided, manager is disabled)
 | setFromStorage | boolean | false | - | Set role by localStorage value
-| unauthorizedRoute | string | //TO SPECIFY | - | Route to navigate if no manager set
-| noGrantedRoute | string | //TO SPECIFY | - | Route to navigate if user has no permissions
+| unauthorizedRoute | string | 'no-auth' | - | Route to navigate if no manager set
+| noGrantedRoute | string | 'no-granted' | - | Route to navigate if user has no permissions
 
 # Manager preference setup
 
@@ -135,7 +135,7 @@ export enum NgxGuardianRole {
 
 2. Define your actions
 ```typescript
-// ngx-permisssions.ts
+// ngx-actions.ts
 
 export enum NgxGuardianAction {
     CREATE = 'CREATE',
@@ -158,6 +158,11 @@ export const FOO: NgxGuardianResource = {
     routes: []
 };
 
+export const PIZZA: NgxGuardianResource = {
+    name: 'PIZZA',
+    routes: []
+};
+
 ```
 
 4. Define your permission managers
@@ -166,21 +171,21 @@ export const FOO: NgxGuardianResource = {
 
 import { NgxGuardianManager } from 'ngx-guardian';
 import { NgxGuardianRole } from './ngx-role';
-import { NgxGuardianResourceType } from './ngx-resources';
+import { FOO, PIZZA } from './ngx-resources';
 import { NgxGuardianAction } from './ngx-permissions';
 
 export const defaultManager: NgxGuardianManager = {
     role: NgxGuardianRole.ADMIN,
     permissions: [
         {
-            resource: NgxGuardianResourceType.PASTA,
+            FOO,
             actions: [
                 NgxGuardianAction.CREATE,
                 NgxGuardianAction.READ
             ]
         },
         {
-            resource: NgxGuardianResourceType.PIZZA,
+            resource: PIZZA,
             actions: [
                 NgxGuardianAction.CREATE,
                 NgxGuardianAction.READ
@@ -200,11 +205,11 @@ This directive __shows or hides__ a html block or component depending on whether
 
 ```html
 <!-- This component will be shown ONLY IF user has CREATE permission over PIZZA resource -->
-<component-to-show-or-hide *ngxShowIfGranted="CREATE - PIZZA">
+<component-to-show-or-hide *ngxShowIfGranted="'CREATE - PIZZA'">
 </component-to-show-or-hide>
 
 <!-- This html block will be shown ONLY IF user has READ permission over PIZZA resource -->
-<div *ngxShowIfGranted="READ - PIZZA">
+<div *ngxShowIfGranted="'READ - PIZZA'">
     <p> Paragraph intended for users with READ permissions over pizza </p>
 </div>
 ```
@@ -216,11 +221,11 @@ This directive __enable or disable__ a html block or component depending on whet
 
 ```html
 <!-- This component will be set disabled IF user HAS NOT CREATE permission over PIZZA resource -->
-<component-to-enable-or-disable *ngxDisableIfNoGranted="READ - PIZZA">
+<component-to-enable-or-disable ngxDisableIfNoGranted="'READ - PIZZA'">
 </component-to-enable-or-disable>
 
 <!-- This html block will be set disabled IF user HAS NOT READ permission over PIZZA resource -->
-<button *ngxDisableIfNoGranted="UPDATE - PIZZA">
+<button ngxDisableIfNoGranted="'UPDATE - PIZZA'">
     Update pizza toppings
 </button>
 ```
@@ -231,10 +236,8 @@ This directive __enable or disable__ a html block or component depending on whet
 __The purpose__ of the Permission Service is to __offer an interface for communication__ with the permission manager.
 
 | Method | Signature | Output | Description |
-| --- | --- | --- | --- |
+| --- | :---: | :---: | --- |
 isGranted | (action: _string_, resource: _string_) | __boolean__ | If user can perform an _action_ over _resource_
 | disableManager | - | - | Disable default permission manager
 | setManagerByRole | (role: _string_) | __boolean__ | Set current manager for role provided
-| addActionToResource | (action: _string_, resource: _string_) | __boolean__ | Add the action for the resource provided
-| getPermissions | - | JSON | Returns the permission list for the current manager in JSON format
 | canNavigateTo | (url: _string_) | __boolean__ | Returns if the user is granted to navigate to the path provided

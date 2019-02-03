@@ -60,17 +60,17 @@ export class DisableIfNoGrantedDirective {
    * @param tag html tag of element
    */
   private setTitleForTag(tag: string) {
-    if (Object.values(DisabledTags).includes(DisabledTags.BUTTON) || Object.values(DisabledTags).includes(DisabledTags.INPUT)) {
+    if (tag === DisabledTags.BUTTON || tag === DisabledTags.INPUT) {
       const type = this.element.nativeElement.getAttribute('type');
       if (type === 'button' || type === 'submit') {
-        this.renderer.setAttribute(this.element.nativeElement, 'title', 'You are not authorized to edit this field');
+        this.renderer.setAttribute(this.element.nativeElement, 'title', 'You are not authorized to perform this action');
         this.renderer.setStyle(this.element.nativeElement, 'cursor', 'not-allowed');
       } else {
-        this.renderer.setAttribute(this.element.nativeElement, 'title', 'You are not authorized to perform this action');
+        this.renderer.setAttribute(this.element.nativeElement, 'title', 'You are not authorized to edit this field');
         this.renderer.setStyle(this.element.nativeElement, 'cursor', 'not-allowed');
       }
     } else {
-      this.renderer.setAttribute(this.element.nativeElement, 'title', 'You are not authorized to edit this field');
+      this.renderer.setAttribute(this.element.nativeElement, 'title', 'You are not authorized to perform this action');
       this.renderer.setStyle(this.element.nativeElement, 'cursor', 'not-allowed');
     }
   }
