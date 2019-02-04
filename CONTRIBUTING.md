@@ -36,7 +36,8 @@ In favor of readability, please follow the following rules & formats:
 | __feat__ | A new feature
 | __fix__ | A bug fix
 | __docs__ | A change over project documentation
-| __test__ | Fix existing or adding missing tests
+| __style__ | Changes that do not affect the meaning of the code (white-space, formatting, missing semi-colons, etc)
+| __test__ | Adding missing tests or correcting existing tests
 | __perf__ | A code change that improves performance
 | __refact__ | Impprove code quality
 | __ci__ | Changes over Cicle CI configuration
@@ -48,7 +49,11 @@ In favor of readability, please follow the following rules & formats:
 | __model__ | Changes over `/models`
 | __directive__ | Changes over `/directives` 
 | __service__ | Changes over `ngx-guardian.service.ts`
-| __config__ | Project configuration (`package.json` or other config files)
+| __guard__ | Changes over `ng-guardian-navigate-to-route.guard.ts`
+| __schematic__ | Changes over `/schematics`
+| __config__ | Project configuration (`package.json`, `config.yml` or other config files)
+| __readme__ | Changes over README.md
+| __contrib__ | Changes over CONTRIBUTING.md
 
 ### Examples
 
@@ -68,21 +73,21 @@ In favor of readability, please follow the following rules & formats:
     * __pre-commit__: before commit changes, TSLint is executed _(ng lint)_
     * __pre-push__: before push changes to origin, unit testing are executed _(ng test)_
 
-2. Open new _Pull Request_ to `rjlopezdev/ngx-guardian > origin/master` with the following considerations:
+2. Open new _Pull Request_ to `rjlopezdev/ngx-guardian > origin/v1.x.x` with the following considerations:
     * Pull Request title __must be concise & understandable__
     * Description should be according the following format _(Markdown)_:
         ```markdown
         _The main purpose of this PR is <explanation>_
 
-        # Docs | Models | Directives | Services | Components | Test | CI
+        # Docs | Model | Directive | Service | Guard | Component | Test | CI
 
-        * Feature | Fix | Performance | Refactor : <descriptive_message>
+        * Feature | Fix | Performance | Refactor | Test : <descriptive_message>
         * ...
         ...
         ```
         Example:
         ```markdown
-        _The main purpose of this PR is to add a new awesome thing to the  FooDirective_
+        _The main purpose of this PR is to add a new awesome thing to the FooDirective_
 
         # Directives
 

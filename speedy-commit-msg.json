@@ -24,6 +24,7 @@
         "test",
         "revert",
         "ci",
+        "style",
         "dep"
       ]
     },
@@ -33,12 +34,10 @@
         "directive",
         "service",
         "guard",
-        "schematics",
+        "schematic",
         "config",
         "readme",
-        "contrib",
-        "mock",
-        "update"
+        "contrib"
       ],
       "no-dash": true,
       "no-underscore": true

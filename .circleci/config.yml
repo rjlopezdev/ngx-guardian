@@ -30,6 +30,24 @@ jobs:
           at: ~/ngx-guardian
       - run: npm run test -- --no-watch --no-progress --code-coverage
       - run: npm run codecov
+    
+  publish:
+    executor: node_container
+    steps:
+      - attach_workspace:
+          at: ~/ngx-guardian
+      - run:
+          name: Build package
+          command: npm run package
+      - run:
+          name: Authenticate with registry
+          command: echo "//registry.npmjs.org/:_authToken=$npm_TOKEN" > ~/ngx-guardian/.npmrc
+      - run:
+          name: Change to dist dir
+          command: cd dist/ngx-guardian
+      - run:
+          name: Publish package
+          command: npm publish
 
 workflows:
 
@@ -39,3 +57,9 @@ workflows:
       - test:
           requires:
             - setup
+      - publish:
+          requires:
+            - test
+          filters:
+            branches:
+              only: master
