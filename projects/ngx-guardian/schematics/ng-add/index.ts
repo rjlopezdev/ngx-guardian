@@ -13,40 +13,41 @@ import {
   filter
 } from '@angular-devkit/schematics';
 import {
-  buildDefaultPath,
   getWorkspace,
   addPackageJsonDependency,
+  addModuleImportToRootModule,
+  getProjectFromWorkspace,
   NodeDependency,
-  NodeDependencyType
+  NodeDependencyType,
+  buildDefaultPath
 } from 'schematics-utilities';
 import { strings, normalize } from '@angular-devkit/core';
 
-function setupOptions(host: Tree, options: any): Tree {
-  const workspace = getWorkspace(host);
-  if (!options.project) {
-    options.project = Object.keys(workspace.projects)[0];
-  }
-  const project = workspace.projects[options.project];
-
-  if (options.path === undefined) {
-    options.path = buildDefaultPath(project);
-  }
-
-  return host;
-}
-
 export default function(options: any): Rule {
     return (tree: Tree, _context: SchematicContext) => {
-      setupOptions(tree, options);
+
+      const workspace = getWorkspace(tree);
+
+      const project = getProjectFromWorkspace(
+        workspace,
+        options.project || workspace.defaultProject
+      );
 
       const templateOptions = {
         ...strings,
         ...options,
       };
 
-      const movePath = normalize(options.path);
+      const movePath = normalize(buildDefaultPath(project));
 
       addDependencies(tree);
+
+      addModuleImportToRootModule(
+        tree,
+        'NgxGuardianModule.forRoot(ngxGuardianConfig)',
+        'ngx-guardian',
+        project
+      );
 
       const rule = chain([
         mergeWith(apply(url('./files'), [

@@ -14,4 +14,6 @@ cp collection.json ../../dist/ngx-guardian
 
 cp -r schematics/ng-add/files ../../dist/ngx-guardian/schematics/ng-add
 
+cd ../../dist/ngx-guardian
+
 echo "Packaged successfully"
