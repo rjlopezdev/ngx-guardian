@@ -18,13 +18,31 @@ describe('DisableIfNoGrantedDirective', () => {
     fixture.detectChanges();
   });
 
-  it('should disable input', () => {
+  it('should disable input or button tag', () => {
     const input: HTMLElement = fixture.nativeElement.querySelector('.blockToDisable');
     expect(input.getAttribute('disabled')).toBeTruthy();
   });
 
-  it('should not disable input', () => {
+  it('should not disable input or button tag', () => {
     const input: HTMLElement = fixture.nativeElement.querySelector('.blockToBeEnabled');
     expect(input.getAttribute('disabled')).toBeFalsy();
+  });
+
+  it('should disable input or button tag with type equals to "button"', () => {
+    const input: HTMLElement = fixture.nativeElement.querySelector('.blockToDisableTypeSubmit');
+    expect(input.getAttribute('disabled')).toBeTruthy();
+    expect(input.getAttribute('title')).toBe('You are not authorized to perform this action');
+  });
+
+  it('should disable input or button tag with type equals to "submit"', () => {
+    const input: HTMLElement = fixture.nativeElement.querySelector('.blockToDisableTypeSubmit');
+    expect(input.getAttribute('disabled')).toBeTruthy();
+    expect(input.getAttribute('title')).toBe('You are not authorized to perform this action');
+  });
+
+  it('should disable div block', () => {
+    const input: HTMLElement = fixture.nativeElement.querySelector('.blockToBeEnabledNoInputType');
+    expect(input.getAttribute('disabled')).toBeTruthy();
+    expect(input.getAttribute('title')).toBe('You are not authorized to perform this action');
   });
 });
