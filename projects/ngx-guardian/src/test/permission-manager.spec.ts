@@ -4,7 +4,7 @@ import { NgxGuardianPermission } from '../lib/ngx-guardian-interfaces';
 
 describe('PermissionManager class', () => {
 
-    let manager: PermissionManager;
+    let manager: any;
     let permissions: NgxGuardianPermission[];
     let role: Role;
 
@@ -67,6 +67,14 @@ describe('PermissionManager class', () => {
 
     it('#getRoleName should return DUMMY', () => {
         expect(manager.getRoleName()).toBe('DUMMY');
+    });
+
+    it('#getPermissions should return permissions set', () => {
+        expect(manager.getPermissions()).toEqual(manager.permissions);
+    });
+
+    it('#getResources should return resources set', () => {
+        expect(manager.getResources()).toEqual(manager.resources);
     });
 
     it('#isGranted should return true', () => {
