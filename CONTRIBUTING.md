@@ -5,7 +5,7 @@
 * Fork repository
 * Clone repo:
 
-    `git clone <yor_fork_repo_url>`
+    `git clone <your_fork_repo_url>`
 
 * Setup project:
 
@@ -15,7 +15,7 @@
 
     _Now project is running_
 
-* Init testing app:
+* Init testing app (_Work in progress_ :wip):
     * Download [demo app](TODO) from Stackblitz
     * Setup as a normal Angular Project
     * Remove __ngx-guardian__ from package.json dependencies
@@ -27,9 +27,9 @@
 
 In favor of readability, please follow the following rules & formats:
 
-    prefix(scope): <descriptive message>
+    type(scope): <descriptive message>
 
-### Prefixes
+### Types
 
 | Prefix | Description |
 | :---: | --- |

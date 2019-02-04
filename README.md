@@ -13,7 +13,7 @@
   </a>
   <br>
   <br>
-  <img src="https://circleci.com/gh/rjlopezdev/ngx-guardian/tree/master.svg?style=svg&circle-token=d5b1a0cd93487254c574765be086e61cc0574b48">
+  <img src="https://circleci.com/gh/rjlopezdev/ngx-guardian/tree/master.svg?style=svg">
   <br>
   <br>
   <img src="https://img.shields.io/badge/maintainer-rjlopezdev-orange.svg?link=https://github.com/rjlopezdev">
