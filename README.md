@@ -18,9 +18,11 @@
   <br>
   <img src="https://img.shields.io/badge/maintainer-rjlopezdev-orange.svg?link=https://github.com/rjlopezdev">
   <img src="https://img.shields.io/badge/ng%20add-compatible-ff69b4.svg">
+  <br>
   <a href="https://codecov.io/gh/rjlopezdev/ngx-guardian">
   <img src="https://codecov.io/gh/rjlopezdev/ngx-guardian/branch/master/graph/badge.svg?token=rStxP4TP7r" />
   </a>
+  <img src="https://badge.fury.io/js/ngx-guardian.svg">
   <img src="https://img.shields.io/badge/license-MIT-green.svg">
   <br>
   <br>
