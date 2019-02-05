@@ -25,7 +25,8 @@
         "revert",
         "ci",
         "style",
-        "dep"
+        "dep",
+        "publish"
       ]
     },
     "scope": {
@@ -37,7 +38,8 @@
         "schematic",
         "config",
         "readme",
-        "contrib"
+        "contrib",
+        "npm"
       ],
       "no-dash": true,
       "no-underscore": true
