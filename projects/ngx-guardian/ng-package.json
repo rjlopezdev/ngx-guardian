@@ -3,5 +3,8 @@
   "dest": "../../dist/ngx-guardian",
   "lib": {
     "entryFile": "src/public_api.ts"
-  }
+  },
+  "whitelistedNonPeerDependencies": [
+    "schematics-utilities"
+  ]
 }

@@ -1,6 +1,6 @@
 {
   "name": "ngx-guardian",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -23,7 +23,6 @@
     "@angular/router": "~7.2.2",
     "core-js": "^2.6.3",
     "rxjs": "~6.3.3",
-    "schematics-utilities": "^1.1.1",
     "tslib": "^1.9.0",
     "zone.js": "~0.8.29"
   },

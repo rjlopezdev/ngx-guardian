@@ -63,7 +63,7 @@ export default function(options: any): Rule {
 
 function addDependencies(host: Tree): Tree {
   const dependencies: NodeDependency[] = [
-    { type: NodeDependencyType.Default, version: '1.0.0', name: 'ngx-guardian' }
+    { type: NodeDependencyType.Default, version: '1.0.2', name: 'ngx-guardian' }
   ];
 
   dependencies.forEach(dependency => addPackageJsonDependency(host, dependency));

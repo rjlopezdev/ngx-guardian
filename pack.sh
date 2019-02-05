@@ -10,7 +10,7 @@ cd projects/ngx-guardian
 
 tsc -p tsconfig.schematics.json
 
-cp collection.json ../../dist/ngx-guardian
+cp schematics/collection.json ../../dist/ngx-guardian/schematics
 
 cp -r schematics/ng-add/files ../../dist/ngx-guardian/schematics/ng-add
 

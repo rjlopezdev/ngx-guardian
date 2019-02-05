@@ -41,13 +41,10 @@ jobs:
           command: npm run package
       - run:
           name: Authenticate with registry
-          command: echo "//registry.npmjs.org/:_authToken=$npm_TOKEN" > ~/ngx-guardian/.npmrc
+          command: echo "//registry.npmjs.org/:_authToken=$npm_TOKEN" > ~/ngx-guardian/dist/ngx-guardian/.npmrc
       - run:
-          name: Change to dist dir
-          command: cd dist/ngx-guardian
-      - run:
-          name: Publish package
-          command: npm publish
+          name: Change to dist dir & publish
+          command: cd dist/ngx-guardian && npm publish
 
 workflows:
 
