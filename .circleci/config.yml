@@ -3,7 +3,7 @@ version: 2.1
 executors:
   node_container:
     docker:
-      - image: circleci/node:8-browsers
+      - image: circleci/node:12-browsers
     working_directory: ~/ngx-guardian
 
 jobs:
@@ -30,7 +30,7 @@ jobs:
           at: ~/ngx-guardian
       - run: npm run test -- --no-watch --no-progress --code-coverage
       - run: npm run codecov
-    
+
   publish:
     executor: node_container
     steps:
