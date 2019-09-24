@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="ngx-guardian-logo.svg" alt="Ngx Guardian logo" width="200" height="200">
+  <img src="https://raw.githubusercontent.com/rjlopezdev/ngx-guardian/master/ngx-guardian-logo.svg?sanitize=true" alt="Ngx Guardian logo" width="200" height="200">
   <p align="center"> Logo designed by <a href="https://www.behance.net/yomissmar"> Yomissmar </a> </p>
 </p>
 
