@@ -29,8 +29,8 @@ describe('NgxGuardianNavigateToRouteGuard', () => {
       ]
     });
 
-    router = TestBed.get(Router);
-    location = TestBed.get(Location);
+    router = TestBed.inject(Router);
+    location = TestBed.inject(Location);
 
     fixture = TestBed.createComponent(EditPizzaComponent);
     router.initialNavigation();
@@ -53,7 +53,7 @@ describe('NgxGuardianNavigateToRouteGuard', () => {
   }));
 
   it('should no navigate to "/forbidden" and redirect to "/no-auth"', fakeAsync(() => {
-    const service: NgxGuardianService = TestBed.get(NgxGuardianService);
+    const service: NgxGuardianService = TestBed.inject(NgxGuardianService);
     service.disableManager();
     router.navigate(['/forbidden']);
     tick();

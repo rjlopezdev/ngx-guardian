@@ -19,7 +19,7 @@ describe('NgxGuardianService instantiation', () => {
   }));
 
   it('#loadConfig should be created', () => {
-    service = TestBed.get(NgxGuardianService);
+    service = TestBed.inject(NgxGuardianService);
     expect(service).toBeTruthy();
   });
 
@@ -38,7 +38,7 @@ describe('NgxGuardianService instantiation', () => {
         }
       ]
     });
-    service = TestBed.get(NgxGuardianService);
+    service = TestBed.inject(NgxGuardianService);
     expect(service.currentManager.role.name).toBe('DEFAULT');
   });
 
@@ -56,7 +56,7 @@ describe('NgxGuardianService instantiation', () => {
         }
       ]
     });
-    service = TestBed.get(NgxGuardianService);
+    service = TestBed.inject(NgxGuardianService);
     expect(service.currentManager).toBeUndefined();
   });
 
@@ -74,7 +74,7 @@ describe('NgxGuardianService instantiation', () => {
         }
       ]
     });
-    service = TestBed.get(NgxGuardianService);
+    service = TestBed.inject(NgxGuardianService);
     expect(service.unauthorizedRoute).toBe('/no-auth');
   });
 
@@ -94,7 +94,7 @@ describe('NgxGuardianService instantiation', () => {
         }
       ]
     });
-    service = TestBed.get(NgxGuardianService);
+    service = TestBed.inject(NgxGuardianService);
     expect(service.unauthorizedRoute).toBe('/custom-no-auth');
   });
 
@@ -112,7 +112,7 @@ describe('NgxGuardianService instantiation', () => {
         }
       ]
     });
-    service = TestBed.get(NgxGuardianService);
+    service = TestBed.inject(NgxGuardianService);
     expect(service.noGrantedRoute).toBe('/no-granted');
   });
 
@@ -132,7 +132,7 @@ describe('NgxGuardianService instantiation', () => {
         }
       ]
     });
-    service = TestBed.get(NgxGuardianService);
+    service = TestBed.inject(NgxGuardianService);
     expect(service.noGrantedRoute).toBe('/custom-no-granted');
   });
 
@@ -148,7 +148,7 @@ describe('NgxGuardianService instantiation', () => {
         }
       ]
     });
-    expect(() => TestBed.get(NgxGuardianService)).toThrow(new Error('No managers provided'));
+    expect(() => TestBed.inject(NgxGuardianService)).toThrow(new Error('No managers provided'));
   });
 
   it(`#loadConfig should throw Error "No managers provided" when config.managers is no provided`, () => {
@@ -161,7 +161,7 @@ describe('NgxGuardianService instantiation', () => {
         }
       ]
     });
-    expect(() => TestBed.get(NgxGuardianService)).toThrow(new Error('No managers provided'));
+    expect(() => TestBed.inject(NgxGuardianService)).toThrow(new Error('No managers provided'));
   });
 
   it(`#loadConfig should console.warn "No manager found in localStorage."
@@ -182,7 +182,7 @@ describe('NgxGuardianService instantiation', () => {
       ]
     });
     localStorage.clear();
-    service = TestBed.get(NgxGuardianService);
+    service = TestBed.inject(NgxGuardianService);
     expect(console.warn).toHaveBeenCalledWith(`No manager found in localStorage.`);
   });
 
@@ -202,7 +202,7 @@ describe('NgxGuardianService instantiation', () => {
       ]
     });
     localStorage.setItem('ngx-guardian-role', 'DEFAULT');
-    service = TestBed.get(NgxGuardianService);
+    service = TestBed.inject(NgxGuardianService);
     expect(service.currentManager.role.name).toBe('DEFAULT');
   });
 
@@ -223,7 +223,7 @@ describe('NgxGuardianService instantiation', () => {
       ]
     });
     localStorage.setItem('ngx-guardian-role', 'FOO');
-    expect(() => TestBed.get(NgxGuardianService)).toThrow(new Error(`No manager set for role: FOO`));
+    expect(() => TestBed.inject(NgxGuardianService)).toThrow(new Error(`No manager set for role: FOO`));
   });
 
   it(`#loadConfig should console.warn "No manager found for role: <FOO>" when setFromStorage equals to "false"
@@ -243,7 +243,7 @@ describe('NgxGuardianService instantiation', () => {
         }
       ]
     });
-    TestBed.get(NgxGuardianService);
+    TestBed.inject(NgxGuardianService);
     expect(console.warn).toHaveBeenCalledWith(`No manager found for role: <FOO>`);
   });
 });
@@ -267,7 +267,7 @@ describe('NgxGuardianService granting permission', () => {
       }
     ]
     });
-    service = TestBed.get(NgxGuardianService);
+    service = TestBed.inject(NgxGuardianService);
   });
 
   // TODO: implement when manager be able to support permission with no action provided
@@ -336,7 +336,7 @@ describe('NgxGuardianService disabling manager', () => {
         }
       ]
     });
-    service = TestBed.get(NgxGuardianService);
+    service = TestBed.inject(NgxGuardianService);
   });
 
   it('#disableManager defaultManager should be enabled when set with valid config', () => {

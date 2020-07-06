@@ -1,8 +1,8 @@
 #!/bin/bash
 
-echo "Building library..."
+# "Build library..."
 
-ng build ngx-guardian
+ng build ngx-guardian --prod
 
 echo "Building Schematics..."
 
